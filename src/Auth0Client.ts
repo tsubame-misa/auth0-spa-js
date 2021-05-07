@@ -498,6 +498,8 @@ export default class Auth0Client {
   ): Promise<RedirectLoginResult> {
     const queryStringFragments = url.split('?').slice(1);
 
+    console.log('handleRedirectCallBack');
+
     if (queryStringFragments.length === 0) {
       throw new Error('There are no query params available for parsing.');
     }
