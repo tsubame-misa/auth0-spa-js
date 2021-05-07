@@ -4767,12 +4767,17 @@
         }),
         (e.prototype.isAuthenticated = function () {
           return o(this, void 0, void 0, function () {
-            return r(this, function (e) {
-              switch (e.label) {
+            var e;
+            return r(this, function (t) {
+              switch (t.label) {
                 case 0:
                   return [4, this.getUser()];
                 case 1:
-                  return [2, !!e.sent()];
+                  return (
+                    (e = t.sent()),
+                    console.log('spa isAuthenticated = ', !!e, e),
+                    [2, !!e]
+                  );
               }
             });
           });

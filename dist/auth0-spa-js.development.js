@@ -7076,6 +7076,7 @@
               return [4 /*yield*/, this.getUser()];
             case 1:
               user = _a.sent();
+              console.log('spa isAuthenticated = ', !!user, user);
               return [2 /*return*/, !!user];
           }
         });
