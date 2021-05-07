@@ -257,19 +257,19 @@
       return y.call(e).slice(8, -1);
     },
     m = ''.split,
-    v = d(function () {
+    C = d(function () {
       return !Object('z').propertyIsEnumerable(0);
     })
       ? function (e) {
           return 'String' == b(e) ? m.call(e, '') : Object(e);
         }
       : Object,
-    C = function (e) {
+    v = function (e) {
       if (null == e) throw TypeError("Can't call method on " + e);
       return e;
     },
     B = function (e) {
-      return v(C(e));
+      return C(v(e));
     },
     F = function (e) {
       return 'object' == typeof e ? null !== e : 'function' == typeof e;
@@ -492,15 +492,15 @@
         return !e && -1;
       };
     },
-    ve = { includes: me(!0), indexOf: me(!1) },
-    Ce = ve.indexOf,
+    Ce = { includes: me(!0), indexOf: me(!1) },
+    ve = Ce.indexOf,
     Be = function (e, t) {
       var n,
         i = B(e),
         r = 0,
         o = [];
       for (n in i) !Z($, n) && Z(i, n) && o.push(n);
-      for (; t.length > r; ) Z(i, (n = t[r++])) && (~Ce(o, n) || o.push(n));
+      for (; t.length > r; ) Z(i, (n = t[r++])) && (~ve(o, n) || o.push(n));
       return o;
     },
     Fe = [
@@ -619,7 +619,7 @@
     { target: 'String', proto: !0, forced: !qe && !Me },
     {
       startsWith: function (e) {
-        var t = String(C(this));
+        var t = String(v(this));
         Oe(e);
         var n = pe(Pe(arguments.length > 1 ? arguments[1] : void 0, t.length)),
           i = String(e);
@@ -669,7 +669,7 @@
           return 'Array' == b(e);
         }),
     ct = function (e) {
-      return Object(C(e));
+      return Object(v(e));
     },
     st = function (e, t, n) {
       var i = U(t);
@@ -708,7 +708,7 @@
         var e = [];
         return (e[pt] = !1), e.concat()[0] !== e;
       }),
-    vt = (function (e) {
+    Ct = (function (e) {
       return (
         It >= 51 ||
         !d(function () {
@@ -722,13 +722,13 @@
         })
       );
     })('concat'),
-    Ct = function (e) {
+    vt = function (e) {
       if (!F(e)) return !1;
       var t = e[pt];
       return void 0 !== t ? !!t : ot(e);
     };
   He(
-    { target: 'Array', proto: !0, forced: !mt || !vt },
+    { target: 'Array', proto: !0, forced: !mt || !Ct },
     {
       concat: function (e) {
         var t,
@@ -740,7 +740,7 @@
           s = ut(c, 0),
           a = 0;
         for (t = -1, i = arguments.length; t < i; t++)
-          if (Ct((o = -1 === t ? c : arguments[t]))) {
+          if (vt((o = -1 === t ? c : arguments[t]))) {
             if (a + (r = pe(o.length)) > yt) throw TypeError(bt);
             for (n = 0; n < r; n++, a++) n in o && st(s, a, o[n]);
           } else {
@@ -891,17 +891,17 @@
           var g,
             f,
             I = ct(a),
-            h = v(I),
+            h = C(I),
             p = nt(u, l, 3),
             y = pe(h.length),
             b = 0,
             m = d || ut,
-            C = t ? m(a, y) : n || c ? m(a, 0) : void 0;
+            v = t ? m(a, y) : n || c ? m(a, 0) : void 0;
           y > b;
           b++
         )
           if ((s || b in h) && ((f = p((g = h[b]), b, I)), e))
-            if (t) C[b] = f;
+            if (t) v[b] = f;
             else if (f)
               switch (e) {
                 case 3:
@@ -911,16 +911,16 @@
                 case 6:
                   return b;
                 case 2:
-                  jt.call(C, g);
+                  jt.call(v, g);
               }
             else
               switch (e) {
                 case 4:
                   return !1;
                 case 7:
-                  jt.call(C, g);
+                  jt.call(v, g);
               }
-        return o ? -1 : i || r ? r : C;
+        return o ? -1 : i || r ? r : v;
       };
     },
     _t = {
@@ -998,18 +998,18 @@
           : cn(e, i, n)
       );
     },
-    vn = function (e, t) {
+    Cn = function (e, t) {
       R(e);
       var n = B(t),
         i = Xt(n).concat(Un(n));
       return (
         _t(i, function (t) {
-          (g && !Cn.call(n, t)) || mn(e, t, n[t]);
+          (g && !vn.call(n, t)) || mn(e, t, n[t]);
         }),
         e
       );
     },
-    Cn = function (e) {
+    vn = function (e) {
       var t = U(e, !0),
         n = an.call(this, t);
       return (
@@ -1074,7 +1074,7 @@
       ae(nn, 'withoutSetter', function (e) {
         return yn(P(e), e);
       }),
-      (h.f = Cn),
+      (h.f = vn),
       (J.f = mn),
       (A.f = Bn),
       (Se.f = Tt.f = Fn),
@@ -1089,7 +1089,7 @@
             return en(this).description;
           }
         }),
-        ae(tn, 'propertyIsEnumerable', Cn, { unsafe: !0 }))),
+        ae(tn, 'propertyIsEnumerable', vn, { unsafe: !0 }))),
     He({ global: !0, wrap: !0, forced: !ke, sham: !ke }, { Symbol: nn }),
     _t(Xt(fn), function (e) {
       Nt(e);
@@ -1119,10 +1119,10 @@
       { target: 'Object', stat: !0, forced: !ke, sham: !g },
       {
         create: function (e, t) {
-          return void 0 === t ? Wt(e) : vn(Wt(e), t);
+          return void 0 === t ? Wt(e) : Cn(Wt(e), t);
         },
         defineProperty: mn,
-        defineProperties: vn,
+        defineProperties: Cn,
         getOwnPropertyDescriptor: Bn
       }
     ),
@@ -1238,7 +1238,7 @@
       return function (t, n) {
         var i,
           r,
-          o = String(C(t)),
+          o = String(v(t)),
           c = Ie(n),
           s = o.length;
         return c < 0 || c >= s
@@ -1465,11 +1465,11 @@
       } catch (e) {}
       return n;
     },
-    vi = !mi(function (e) {
+    Ci = !mi(function (e) {
       Array.from(e);
     });
   He(
-    { target: 'Array', stat: !0, forced: vi },
+    { target: 'Array', stat: !0, forced: Ci },
     {
       from: function (e) {
         var t,
@@ -1503,7 +1503,7 @@
     }
   );
   ue.Array.from;
-  var Ci,
+  var vi,
     Bi = 'undefined' != typeof ArrayBuffer && 'undefined' != typeof DataView,
     Fi = J.f,
     Ui = l.Int8Array,
@@ -1531,7 +1531,7 @@
     Wi = function (e) {
       return F(e) && Z(Ji, Zt(e));
     };
-  for (Ci in Ji) l[Ci] || (Qi = !1);
+  for (vi in Ji) l[vi] || (Qi = !1);
   if (
     (!Qi || 'function' != typeof Gi || Gi === Function.prototype) &&
     ((Gi = function () {
@@ -1539,18 +1539,18 @@
     }),
     Qi)
   )
-    for (Ci in Ji) l[Ci] && _n(l[Ci], Gi);
+    for (vi in Ji) l[vi] && _n(l[vi], Gi);
   if ((!Qi || !Xi || Xi === wi) && ((Xi = Gi.prototype), Qi))
-    for (Ci in Ji) l[Ci] && _n(l[Ci].prototype, Xi);
+    for (vi in Ji) l[vi] && _n(l[vi].prototype, Xi);
   if ((Qi && Yn(Vi) !== Xi && _n(Vi, Xi), g && !Z(Xi, Ai)))
-    for (Ci in (!0,
+    for (vi in (!0,
     Fi(Xi, Ai, {
       get: function () {
         return F(this) ? this[Ri] : void 0;
       }
     }),
     Ji))
-      l[Ci] && W(l[Ci], Ri, Ci);
+      l[vi] && W(l[vi], Ri, vi);
   var Hi = function (e) {
       if (Wi(e)) return e;
       throw TypeError('Target is not a typed array');
@@ -1560,7 +1560,7 @@
         if (xi.call(Gi, e)) return e;
       } else
         for (var t in Ji)
-          if (Z(Ji, Ci)) {
+          if (Z(Ji, vi)) {
             var n = l[t];
             if (n && (e === n || xi.call(n, e))) return e;
           }
@@ -1614,7 +1614,7 @@
     _i = function (e) {
       throw e;
     },
-    Pi = ve.includes,
+    Pi = Ce.includes,
     Mi = (function (e, t) {
       if (Z(Di, e)) return Di[e];
       t || (t = {});
@@ -1645,7 +1645,7 @@
     { target: 'String', proto: !0, forced: !je('includes') },
     {
       includes: function (e) {
-        return !!~String(C(this)).indexOf(
+        return !!~String(v(this)).indexOf(
           Oe(e),
           arguments.length > 1 ? arguments[1] : void 0
         );
@@ -2097,17 +2097,17 @@
           mr[Ir] = pr;
         }
       if ((mr[hr] || W(mr, hr, yr), ur[yr]))
-        for (var vr in fr)
-          if (mr[vr] !== fr[vr])
+        for (var Cr in fr)
+          if (mr[Cr] !== fr[Cr])
             try {
-              W(mr, vr, fr[vr]);
+              W(mr, Cr, fr[Cr]);
             } catch (e) {
-              mr[vr] = fr[vr];
+              mr[Cr] = fr[Cr];
             }
     }
   }
   ue.Set;
-  function Cr(e) {
+  function vr(e) {
     var t = this.constructor;
     return this.then(
       function (n) {
@@ -2251,7 +2251,7 @@
       var n = new this.constructor(Sr);
       return Vr(this, new xr(e, t, n)), n;
     }),
-    (Zr.prototype.finally = Cr),
+    (Zr.prototype.finally = vr),
     (Zr.all = function (e) {
       return new Zr(function (t, n) {
         if (!Ur(e)) return n(new TypeError('Promise.all accepts an array'));
@@ -2321,7 +2321,7 @@
     ? (Rr.Promise = Zr)
     : Rr.Promise.prototype.finally
     ? Rr.Promise.allSettled || (Rr.Promise.allSettled = Br)
-    : (Rr.Promise.prototype.finally = Cr),
+    : (Rr.Promise.prototype.finally = vr),
     (function (e) {
       function t() {}
       function n(e, t) {
@@ -3651,8 +3651,12 @@
           var n = t.split('::'),
             i = n[0],
             r = n[1],
-            o = n[2];
-          return new e({ client_id: r, scope: n[3], audience: o }, i);
+            o = n[2],
+            c = n[3];
+          return (
+            console.log('CaheKey:', r, c, o),
+            new e({ client_id: r, scope: c, audience: o }, i)
+          );
         }),
         e
       );
@@ -3972,7 +3976,7 @@
       }
       return t;
     },
-    vo = a(function (e, t) {
+    Co = a(function (e, t) {
       var n =
         (c && c.__assign) ||
         function () {
@@ -4053,9 +4057,9 @@
           a(e, '', n(n({}, t), { expires: -1 }));
         });
     });
-  s(vo);
-  vo.encode, vo.parse, vo.getAll, vo.get, vo.set, vo.remove;
-  var Co = {
+  s(Co);
+  Co.encode, Co.parse, Co.getAll, Co.get, Co.set, Co.remove;
+  var vo = {
       get: function (e) {
         if ('undefined' != typeof sessionStorage) {
           var t = sessionStorage.getItem(e);
@@ -4074,7 +4078,7 @@
         if ('undefined' != typeof localStorage) {
           var t = localStorage.getItem(e);
           if (void 0 !== t)
-            return console.log('localStorage ok'), JSON.parse(t);
+            return console.log('localStorage ok', t), JSON.parse(t);
           console.log('localStorage : undefind');
         } else console.log('localStorage : undefind type');
       },
@@ -4161,7 +4165,7 @@
           );
         var r,
           o,
-          c = e.useCookiesForTransactions ? this.cookieStorage : Co;
+          c = e.useCookiesForTransactions ? this.cookieStorage : vo;
         (this.cache = Ro(this.cacheLocation)()),
           (this.scope = this.options.scope),
           (this.transactionManager = new po(c)),

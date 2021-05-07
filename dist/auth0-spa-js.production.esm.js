@@ -3604,8 +3604,12 @@ var qr = (function () {
         var n = t.split('::'),
           i = n[0],
           r = n[1],
-          o = n[2];
-        return new e({ client_id: r, scope: n[3], audience: o }, i);
+          o = n[2],
+          c = n[3];
+        return (
+          console.log('CaheKey:', r, c, o),
+          new e({ client_id: r, scope: c, audience: o }, i)
+        );
       }),
       e
     );
@@ -4025,7 +4029,8 @@ var uo = {
     get: function (e) {
       if ('undefined' != typeof localStorage) {
         var t = localStorage.getItem(e);
-        if (void 0 !== t) return console.log('localStorage ok'), JSON.parse(t);
+        if (void 0 !== t)
+          return console.log('localStorage ok', t), JSON.parse(t);
         console.log('localStorage : undefind');
       } else console.log('localStorage : undefind type');
     },

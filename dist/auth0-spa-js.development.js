@@ -5542,6 +5542,7 @@
         client_id = _a[1],
         audience = _a[2],
         scope = _a[3];
+      console.log('CaheKey:', client_id, scope, audience);
       return new CacheKey(
         { client_id: client_id, scope: scope, audience: audience },
         prefix
@@ -6117,7 +6118,7 @@
         console.log('localStorage : undefind');
         return;
       }
-      console.log('localStorage ok');
+      console.log('localStorage ok', value);
       return JSON.parse(value);
     },
     save: function (key, value, options) {
