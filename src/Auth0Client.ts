@@ -311,6 +311,8 @@ export default class Auth0Client {
       ...(organizationId && { organizationId })
     });
 
+    console.log('buildAuthorizeUrl: url + fragment', url, fragment);
+
     return url + fragment;
   }
 
@@ -480,6 +482,7 @@ export default class Auth0Client {
    */
   public async loginWithRedirect(options: RedirectLoginOptions = {}) {
     const url = await this.buildAuthorizeUrl(options);
+    console.log('loginWithRedirect; url', url);
     window.location.assign(url);
   }
 
