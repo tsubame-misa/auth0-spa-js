@@ -5547,6 +5547,7 @@ var Auth0Client = /** @class */ (function () {
                 organizationId && { organizationId: organizationId }
               )
             );
+            console.log('buildAuthorizeUrl: url + fragment', url, fragment);
             return [2 /*return*/, url + fragment];
         }
       });
@@ -5766,6 +5767,7 @@ var Auth0Client = /** @class */ (function () {
             return [4 /*yield*/, this.buildAuthorizeUrl(options)];
           case 1:
             url = _a.sent();
+            console.log('loginWithRedirect; url', url);
             window.location.assign(url);
             return [2 /*return*/];
         }
