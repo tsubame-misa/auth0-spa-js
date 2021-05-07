@@ -6109,12 +6109,15 @@
   var LocalStorage = {
     get: function (key) {
       if (typeof localStorage === 'undefined') {
+        console.log('localStorage : undefind type');
         return;
       }
       var value = localStorage.getItem(key);
       if (typeof value === 'undefined') {
+        console.log('localStorage : undefind');
         return;
       }
+      console.log('localStorage ok');
       return JSON.parse(value);
     },
     save: function (key, value, options) {
@@ -6629,6 +6632,7 @@
               scope: scope
             })
           );
+          console.log('getUser :', audience, scope, cache);
           return [
             2 /*return*/,
             cache && cache.decodedToken && cache.decodedToken.user
