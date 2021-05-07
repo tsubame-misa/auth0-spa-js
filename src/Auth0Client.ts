@@ -153,7 +153,7 @@ export default class Auth0Client {
     this.cacheLocation = options.cacheLocation || CACHE_LOCATION_MEMORY;
 
     this.cookieStorage = LocalStorage;
-    console.log(this.cookieStorage);
+    console.log('cookieStorage = ', this.cookieStorage);
 
     this.sessionCheckExpiryDays =
       options.sessionCheckExpiryDays || DEFAULT_SESSION_CHECK_EXPIRY_DAYS;
@@ -437,7 +437,7 @@ export default class Auth0Client {
       })
     );
 
-    console.log('getUser :', audience, scope, cache);
+    console.log('getUser :', audience, scope, cache, this.options.client_id);
 
     return cache && cache.decodedToken && (cache.decodedToken.user as TUser);
   }
