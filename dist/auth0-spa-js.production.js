@@ -342,7 +342,7 @@
       : function (e, t, n) {
           return (e[t] = n), e;
         },
-    H = function (e, t) {
+    k = function (e, t) {
       try {
         W(l, e, t);
       } catch (n) {
@@ -350,8 +350,8 @@
       }
       return t;
     },
-    k = '__core-js_shared__',
-    L = l[k] || H(k, {}),
+    H = '__core-js_shared__',
+    L = l[H] || k(H, {}),
     T = Function.toString;
   'function' != typeof L.inspectSource &&
     (L.inspectSource = function (e) {
@@ -450,7 +450,7 @@
               a ? (e[t] = o) : W(e, t, o))
             : a
             ? (e[t] = o)
-            : H(t, o);
+            : k(t, o);
       })(Function.prototype, 'toString', function () {
         return ('function' == typeof this && t(this).source) || K(this);
       });
@@ -547,7 +547,7 @@
     Qe = (we.POLYFILL = 'P'),
     Je = we,
     We = A.f,
-    He = function (e, t) {
+    ke = function (e, t) {
       var n,
         i,
         o,
@@ -556,7 +556,7 @@
         s = e.target,
         a = e.global,
         u = e.stat;
-      if ((n = a ? l : u ? l[s] || H(s, {}) : (l[s] || {}).prototype))
+      if ((n = a ? l : u ? l[s] || k(s, {}) : (l[s] || {}).prototype))
         for (i in t) {
           if (
             ((r = t[i]),
@@ -569,19 +569,19 @@
           (e.sham || (o && o.sham)) && W(r, 'sham', !0), ae(n, i, r, e);
         }
     },
-    ke =
+    He =
       !!Object.getOwnPropertySymbols &&
       !d(function () {
         return !String(Symbol());
       }),
-    Le = ke && !Symbol.sham && 'symbol' == typeof Symbol.iterator,
+    Le = He && !Symbol.sham && 'symbol' == typeof Symbol.iterator,
     Te = j('wks'),
     Ee = l.Symbol,
     Ye = Le ? Ee : (Ee && Ee.withoutSetter) || P,
     Ne = function (e) {
       return (
         Z(Te, e) ||
-          (ke && Z(Ee, e) ? (Te[e] = Ee[e]) : (Te[e] = Ye('Symbol.' + e))),
+          (He && Z(Ee, e) ? (Te[e] = Ee[e]) : (Te[e] = Ye('Symbol.' + e))),
         Te[e]
       );
     },
@@ -615,7 +615,7 @@
     qe = !(
       Me || ((ce = De(String.prototype, 'startsWith')), !ce || ce.writable)
     );
-  He(
+  ke(
     { target: 'String', proto: !0, forced: !qe && !Me },
     {
       startsWith: function (e) {
@@ -727,7 +727,7 @@
       var t = e[pt];
       return void 0 !== t ? !!t : rt(e);
     };
-  He(
+  ke(
     { target: 'Array', proto: !0, forced: !mt || !vt },
     {
       concat: function (e) {
@@ -845,23 +845,23 @@
           void 0 === t ? n : wt(n, t)
         );
       },
-    Ht = Se.f,
-    kt = {}.toString,
+    kt = Se.f,
+    Ht = {}.toString,
     Lt =
       'object' == typeof window && window && Object.getOwnPropertyNames
         ? Object.getOwnPropertyNames(window)
         : [],
     Tt = {
       f: function (e) {
-        return Lt && '[object Window]' == kt.call(e)
+        return Lt && '[object Window]' == Ht.call(e)
           ? (function (e) {
               try {
-                return Ht(e);
+                return kt(e);
               } catch (e) {
                 return Lt.slice();
               }
             })(e)
-          : Ht(B(e));
+          : kt(B(e));
       }
     },
     Et = { f: Ne },
@@ -1049,7 +1049,7 @@
       );
     };
   if (
-    (ke ||
+    (He ||
       (ae(
         (nn = function () {
           if (this instanceof nn)
@@ -1090,12 +1090,12 @@
           }
         }),
         ae(tn, 'propertyIsEnumerable', Cn, { unsafe: !0 }))),
-    He({ global: !0, wrap: !0, forced: !ke, sham: !ke }, { Symbol: nn }),
+    ke({ global: !0, wrap: !0, forced: !He, sham: !He }, { Symbol: nn }),
     _t(Xt(fn), function (e) {
       Nt(e);
     }),
-    He(
-      { target: Mt, stat: !0, forced: !ke },
+    ke(
+      { target: Mt, stat: !0, forced: !He },
       {
         for: function (e) {
           var t = String(e);
@@ -1115,8 +1115,8 @@
         }
       }
     ),
-    He(
-      { target: 'Object', stat: !0, forced: !ke, sham: !g },
+    ke(
+      { target: 'Object', stat: !0, forced: !He, sham: !g },
       {
         create: function (e, t) {
           return void 0 === t ? Wt(e) : vn(Wt(e), t);
@@ -1126,11 +1126,11 @@
         getOwnPropertyDescriptor: Bn
       }
     ),
-    He(
-      { target: 'Object', stat: !0, forced: !ke },
+    ke(
+      { target: 'Object', stat: !0, forced: !He },
       { getOwnPropertyNames: Fn, getOwnPropertySymbols: Un }
     ),
-    He(
+    ke(
       {
         target: 'Object',
         stat: !0,
@@ -1147,14 +1147,14 @@
     on)
   ) {
     var Sn =
-      !ke ||
+      !He ||
       d(function () {
         var e = nn();
         return (
           '[null]' != on([e]) || '{}' != on({ a: e }) || '{}' != on(Object(e))
         );
       });
-    He(
+    ke(
       { target: 'JSON', stat: !0, forced: Sn },
       {
         stringify: function (e, t, n) {
@@ -1212,7 +1212,7 @@
         return '' === n ? void 0 : n;
       }
     }),
-      He({ global: !0, forced: !0 }, { Symbol: Xn });
+      ke({ global: !0, forced: !0 }, { Symbol: Xn });
   }
   Nt('hasInstance'),
     Nt('isConcatSpreadable'),
@@ -1228,13 +1228,13 @@
     Nt('unscopables'),
     zt(l.JSON, 'JSON', !0),
     zt(Math, 'Math', !0),
-    He({ global: !0 }, { Reflect: {} }),
+    ke({ global: !0 }, { Reflect: {} }),
     zt(l.Reflect, 'Reflect', !0);
   ue.Symbol;
   var Qn,
     Jn,
     Wn,
-    Hn = function (e) {
+    kn = function (e) {
       return function (t, n) {
         var i,
           o,
@@ -1258,7 +1258,7 @@
           : o - 56320 + ((i - 55296) << 10) + 65536;
       };
     },
-    kn = { codeAt: Hn(!1), charAt: Hn(!0) },
+    Hn = { codeAt: kn(!1), charAt: kn(!0) },
     Ln = !d(function () {
       function e() {}
       return (
@@ -1387,10 +1387,10 @@
       )
         if (((a = { values: l(ei), keys: r ? h : l($n), entries: l(ti) }), c))
           for (u in a) (Mn || g || !(u in f)) && ae(f, u, a[u]);
-        else He({ target: t, proto: !0, forced: Mn || g }, a);
+        else ke({ target: t, proto: !0, forced: Mn || g }, a);
       return a;
     },
-    oi = kn.charAt,
+    oi = Hn.charAt,
     ri = 'String Iterator',
     ci = se.set,
     si = se.getterFor(ri);
@@ -1468,7 +1468,7 @@
     vi = !mi(function (e) {
       Array.from(e);
     });
-  He(
+  ke(
     { target: 'Array', stat: !0, forced: vi },
     {
       from: function (e) {
@@ -1551,11 +1551,11 @@
     }),
     Ji))
       l[Ci] && W(l[Ci], Ri, Ci);
-  var Hi = function (e) {
+  var ki = function (e) {
       if (Wi(e)) return e;
       throw TypeError('Target is not a typed array');
     },
-    ki = function (e) {
+    Hi = function (e) {
       if (_n) {
         if (xi.call(Gi, e)) return e;
       } else
@@ -1577,8 +1577,8 @@
       }
     },
     Ti = Ne('species'),
-    Ei = Hi,
-    Yi = ki,
+    Ei = ki,
+    Yi = Hi,
     Ni = [].slice;
   Li(
     'slice',
@@ -1631,7 +1631,7 @@
             n.call(e, o, r);
         }));
     })('indexOf', { ACCESSORS: !0, 1: 0 });
-  He(
+  ke(
     { target: 'Array', proto: !0, forced: !Mi },
     {
       includes: function (e) {
@@ -1641,7 +1641,7 @@
   ),
     zi('includes');
   ot('Array', 'includes');
-  He(
+  ke(
     { target: 'String', proto: !0, forced: !je('includes') },
     {
       includes: function (e) {
@@ -1849,7 +1849,7 @@
             o && s.clear && delete s.clear;
         }
         (u[e] = a),
-          He({ global: !0, forced: a != c }, u),
+          ke({ global: !0, forced: a != c }, u),
           zt(a, e),
           o || n.setStrong(a, e, i);
       })(
@@ -3161,8 +3161,8 @@
         t.default = a;
       })
     ),
-    Ho = { timeoutInSeconds: 60 },
-    ko = 'memory',
+    ko = { timeoutInSeconds: 60 },
+    Ho = 'memory',
     Lo = [
       'login_required',
       'consent_required',
@@ -4155,9 +4155,9 @@
                   '\n      auth0-spa-js must run on a secure origin. See https://github.com/auth0/auth0-spa-js/blob/master/FAQ.md#why-do-i-get-auth0-spa-js-must-run-on-a-secure-origin for more information.\n    '
                 );
             })(),
-          (this.cacheLocation = e.cacheLocation || ko),
+          (this.cacheLocation = e.cacheLocation || Ho),
           (this.cookieStorage = Br),
-          console.log(this.cookieStorage),
+          console.log('cookieStorage = ', this.cookieStorage),
           (this.sessionCheckExpiryDays = e.sessionCheckExpiryDays || 1),
           !Rr(this.cacheLocation))
         )
@@ -4197,7 +4197,7 @@
           'undefined' != typeof window &&
             window.Worker &&
             this.options.useRefreshTokens &&
-            this.cacheLocation === ko &&
+            this.cacheLocation === Ho &&
             Qr() &&
             (this.worker = new Gr()),
           (this.customOptions = (function (e) {
@@ -4434,7 +4434,7 @@
                       scope: n
                     })
                   )),
-                  console.log('getUser :', t, n, i),
+                  console.log('getUser :', t, n, i, this.options.client_id),
                   [2, i && i.decodedToken && i.decodedToken.user]
                 );
               });
@@ -4743,7 +4743,7 @@
                     return (
                       (e.audience = e.audience || this.options.audience),
                       (e.scope = sr(this.defaultScope, this.scope, e.scope)),
-                      (t = n(n({}, Ho), t)),
+                      (t = n(n({}, ko), t)),
                       [4, this.loginWithPopup(e, t)]
                     );
                   case 1:
@@ -5017,8 +5017,8 @@
       });
     });
   }
-  var Hr = Wr;
-  return (Hr.Auth0Client = Jr), (Hr.createAuth0Client = Wr), Hr;
+  var kr = Wr;
+  return (kr.Auth0Client = Jr), (kr.createAuth0Client = Wr), kr;
 }),
   'Auth0Client' in this &&
     this.console &&

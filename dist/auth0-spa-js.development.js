@@ -6301,7 +6301,7 @@
       typeof window !== 'undefined' && validateCrypto();
       this.cacheLocation = options.cacheLocation || CACHE_LOCATION_MEMORY;
       this.cookieStorage = LocalStorage;
-      console.log(this.cookieStorage);
+      console.log('cookieStorage = ', this.cookieStorage);
       this.sessionCheckExpiryDays =
         options.sessionCheckExpiryDays || DEFAULT_SESSION_CHECK_EXPIRY_DAYS;
       if (!cacheFactory(this.cacheLocation)) {
@@ -6635,7 +6635,13 @@
               scope: scope
             })
           );
-          console.log('getUser :', audience, scope, cache);
+          console.log(
+            'getUser :',
+            audience,
+            scope,
+            cache,
+            this.options.client_id
+          );
           return [
             2 /*return*/,
             cache && cache.decodedToken && cache.decodedToken.user
