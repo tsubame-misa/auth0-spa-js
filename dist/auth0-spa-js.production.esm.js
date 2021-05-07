@@ -4030,7 +4030,7 @@ var uo = {
       if ('undefined' != typeof localStorage) {
         var t = localStorage.getItem(e);
         if (void 0 !== t)
-          return console.log('localStorage ok', t), JSON.parse(t);
+          return console.log('localStorage ok, value = ', t), JSON.parse(t);
         console.log('localStorage : undefind');
       } else console.log('localStorage : undefind type');
     },
@@ -4104,6 +4104,7 @@ var fo,
           })(),
         (this.cacheLocation = e.cacheLocation || 'memory'),
         (this.cookieStorage = lo),
+        console.log(this.cookieStorage),
         (this.sessionCheckExpiryDays = e.sessionCheckExpiryDays || 1),
         !Bo(this.cacheLocation))
       )

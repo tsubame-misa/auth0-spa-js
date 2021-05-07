@@ -6118,7 +6118,7 @@
         console.log('localStorage : undefind');
         return;
       }
-      console.log('localStorage ok', value);
+      console.log('localStorage ok, value = ', value);
       return JSON.parse(value);
     },
     save: function (key, value, options) {
@@ -6301,6 +6301,7 @@
       typeof window !== 'undefined' && validateCrypto();
       this.cacheLocation = options.cacheLocation || CACHE_LOCATION_MEMORY;
       this.cookieStorage = LocalStorage;
+      console.log(this.cookieStorage);
       this.sessionCheckExpiryDays =
         options.sessionCheckExpiryDays || DEFAULT_SESSION_CHECK_EXPIRY_DAYS;
       if (!cacheFactory(this.cacheLocation)) {

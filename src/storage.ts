@@ -115,7 +115,7 @@ export const LocalStorage = {
       console.log('localStorage : undefind');
       return;
     }
-    console.log('localStorage ok', value);
+    console.log('localStorage ok, value = ', value);
     return <T>JSON.parse(value);
   },
 

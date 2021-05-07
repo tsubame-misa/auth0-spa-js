@@ -153,6 +153,7 @@ export default class Auth0Client {
     this.cacheLocation = options.cacheLocation || CACHE_LOCATION_MEMORY;
 
     this.cookieStorage = LocalStorage;
+    console.log(this.cookieStorage);
 
     this.sessionCheckExpiryDays =
       options.sessionCheckExpiryDays || DEFAULT_SESSION_CHECK_EXPIRY_DAYS;
