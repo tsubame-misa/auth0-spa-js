@@ -757,6 +757,7 @@ export default class Auth0Client {
    */
   public async isAuthenticated() {
     const user = await this.getUser();
+    console.log('spa isAuthenticated = ', !!user, user);
     return !!user;
   }
 
