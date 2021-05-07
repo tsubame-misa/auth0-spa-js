@@ -5808,6 +5808,7 @@ var Auth0Client = /** @class */ (function () {
         switch (_b.label) {
           case 0:
             queryStringFragments = url.split('?').slice(1);
+            console.log('handleRedirectCallBack');
             if (queryStringFragments.length === 0) {
               throw new Error(
                 'There are no query params available for parsing.'

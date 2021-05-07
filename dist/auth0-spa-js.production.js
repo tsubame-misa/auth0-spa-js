@@ -4496,7 +4496,11 @@
               return r(this, function (r) {
                 switch (r.label) {
                   case 0:
-                    if (0 === (t = e.split('?').slice(1)).length)
+                    if (
+                      ((t = e.split('?').slice(1)),
+                      console.log('handleRedirectCallBack'),
+                      0 === t.length)
+                    )
                       throw new Error(
                         'There are no query params available for parsing.'
                       );
