@@ -6740,8 +6740,9 @@
         return __generator(this, function (_b) {
           switch (_b.label) {
             case 0:
+              console.log('handleRedirectCallBack_a1');
               queryStringFragments = url.split('?').slice(1);
-              console.log('handleRedirectCallBack');
+              console.log('handleRedirectCallBack_a2');
               if (queryStringFragments.length === 0) {
                 throw new Error(
                   'There are no query params available for parsing.'
@@ -6753,6 +6754,7 @@
                 (error = _a.error),
                 (error_description = _a.error_description);
               transaction = this.transactionManager.get();
+              console.log('transcation = ', transaction);
               // Transaction should have a `code_verifier` to do PKCE for CSRF protection
               if (!transaction || !transaction.code_verifier) {
                 throw new Error('Invalid state');

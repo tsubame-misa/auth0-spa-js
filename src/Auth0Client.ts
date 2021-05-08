@@ -495,9 +495,11 @@ export default class Auth0Client {
   public async handleRedirectCallback(
     url: string = window.location.href
   ): Promise<RedirectLoginResult> {
+    console.log('handleRedirectCallBack_a1');
+
     const queryStringFragments = url.split('?').slice(1);
 
-    console.log('handleRedirectCallBack');
+    console.log('handleRedirectCallBack_a2');
 
     if (queryStringFragments.length === 0) {
       throw new Error('There are no query params available for parsing.');
@@ -508,6 +510,7 @@ export default class Auth0Client {
     );
 
     const transaction = this.transactionManager.get();
+    console.log('transcation = ', transaction);
 
     // Transaction should have a `code_verifier` to do PKCE for CSRF protection
     if (!transaction || !transaction.code_verifier) {
