@@ -6799,6 +6799,7 @@
               this.cookieStorage.save('auth0.is.authenticated', true, {
                 daysUntilExpire: this.sessionCheckExpiryDays
               });
+              console.log('transcation.appSate = ', transaction.appState);
               return [
                 2 /*return*/,
                 {

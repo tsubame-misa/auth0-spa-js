@@ -564,6 +564,8 @@ export default class Auth0Client {
       daysUntilExpire: this.sessionCheckExpiryDays
     });
 
+    console.log('transcation.appSate = ', transaction.appState);
+
     return {
       appState: transaction.appState
     };
