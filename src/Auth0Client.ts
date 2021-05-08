@@ -1,5 +1,4 @@
 import Lock from 'browser-tabs-lock';
-
 import {
   createQueryParams,
   runPopup,
