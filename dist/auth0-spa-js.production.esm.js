@@ -4435,6 +4435,8 @@ var fr,
           o(this, void 0, void 0, function () {
             var t, i, o, c, s, a, u, l, d, g, f;
             return r(this, function (r) {
+              console.log('handleRedirect1');
+              console.log('e_url = ', e);
               switch (r.label) {
                 case 0:
                   if (
