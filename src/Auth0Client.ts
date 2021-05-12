@@ -797,7 +797,7 @@ export default class Auth0Client {
    * Builds a URL to the logout endpoint using the parameters provided as arguments.
    * @param options
    */
-  public originBuildLogoutUrl(options: LogoutOptions = {}): string {
+  public originBuildLogoutUrl(options: LogoutOptions = {}) {
     const { localOnly, ...logoutOptions } = options;
 
     if (localOnly && logoutOptions.federated) {
@@ -813,7 +813,7 @@ export default class Auth0Client {
       return;
     }
 
-    if (options.client_id !== null) {
+    /*if (options.client_id !== null) {
       options.client_id = options.client_id || this.options.client_id;
     } else {
       delete options.client_id;
@@ -823,7 +823,7 @@ export default class Auth0Client {
     const federatedQuery = federated ? `&federated` : '';
     const url = this._url(`/v2/logout?${createQueryParams(logoutOptions)}`);
 
-    return url + federatedQuery;
+    return url + federatedQuery;*/
   }
 
   /**

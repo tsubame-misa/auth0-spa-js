@@ -6192,15 +6192,17 @@ var Auth0Client = /** @class */ (function () {
     if (localOnly) {
       return;
     }
-    if (options.client_id !== null) {
-      options.client_id = options.client_id || this.options.client_id;
-    } else {
-      delete options.client_id;
-    }
-    var federated = options.federated;
-    var federatedQuery = federated ? '&federated' : '';
-    var url = this._url('/v2/logout?' + createQueryParams(logoutOptions));
-    return url + federatedQuery;
+    /*if (options.client_id !== null) {
+          options.client_id = options.client_id || this.options.client_id;
+        } else {
+          delete options.client_id;
+        }
+    
+        const { federated } = options;
+        const federatedQuery = federated ? `&federated` : '';
+        const url = this._url(`/v2/logout?${createQueryParams(logoutOptions)}`);
+    
+        return url + federatedQuery;*/
   };
   /**
    * ```js
