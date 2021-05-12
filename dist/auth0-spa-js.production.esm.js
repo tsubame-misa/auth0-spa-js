@@ -341,8 +341,8 @@ var u = function (e) {
   (H.inspectSource = function (e) {
     return L.call(e);
   });
-var T,
-  E,
+var E,
+  T,
   Y,
   N = H.inspectSource,
   K = l.WeakMap,
@@ -357,15 +357,15 @@ var T,
     });
   }),
   j = 0,
-  D = Math.random(),
-  _ = function (e) {
+  _ = Math.random(),
+  D = function (e) {
     return (
-      'Symbol(' + String(void 0 === e ? '' : e) + ')_' + (++j + D).toString(36)
+      'Symbol(' + String(void 0 === e ? '' : e) + ')_' + (++j + _).toString(36)
     );
   },
   P = z('keys'),
   M = function (e) {
-    return P[e] || (P[e] = _(e));
+    return P[e] || (P[e] = D(e));
   },
   q = {},
   $ = l.WeakMap;
@@ -374,10 +374,10 @@ if (O) {
     te = ee.get,
     ne = ee.has,
     ie = ee.set;
-  (T = function (e, t) {
+  (E = function (e, t) {
     return (t.facade = e), ie.call(ee, e, t), t;
   }),
-    (E = function (e) {
+    (T = function (e) {
       return te.call(ee, e) || {};
     }),
     (Y = function (e) {
@@ -386,10 +386,10 @@ if (O) {
 } else {
   var re = M('state');
   (q[re] = !0),
-    (T = function (e, t) {
+    (E = function (e, t) {
       return (t.facade = e), W(e, re, t), t;
     }),
-    (E = function (e) {
+    (T = function (e) {
       return Z(e, re) ? e[re] : {};
     }),
     (Y = function (e) {
@@ -398,16 +398,16 @@ if (O) {
 }
 var oe,
   ce = {
-    set: T,
-    get: E,
+    set: E,
+    get: T,
     has: Y,
     enforce: function (e) {
-      return Y(e) ? E(e) : T(e, {});
+      return Y(e) ? T(e) : E(e, {});
     },
     getterFor: function (e) {
       return function (t) {
         var n;
-        if (!F(t) || (n = E(t)).type !== e)
+        if (!F(t) || (n = T(t)).type !== e)
           throw TypeError('Incompatible receiver, ' + e + ' required');
         return n;
       };
@@ -556,12 +556,12 @@ var oe,
     }),
   He = ke && !Symbol.sham && 'symbol' == typeof Symbol.iterator,
   Le = z('wks'),
-  Te = l.Symbol,
-  Ee = He ? Te : (Te && Te.withoutSetter) || _,
+  Ee = l.Symbol,
+  Te = He ? Ee : (Ee && Ee.withoutSetter) || D,
   Ye = function (e) {
     return (
       Z(Le, e) ||
-        (ke && Z(Te, e) ? (Le[e] = Te[e]) : (Le[e] = Ee('Symbol.' + e))),
+        (ke && Z(Ee, e) ? (Le[e] = Ee[e]) : (Le[e] = Te('Symbol.' + e))),
       Le[e]
     );
   },
@@ -589,8 +589,8 @@ var oe,
     return !1;
   },
   je = A.f,
-  De = ''.startsWith,
-  _e = Math.min,
+  _e = ''.startsWith,
+  De = Math.min,
   Pe = ze('startsWith'),
   Me = !(Pe || ((oe = je(String.prototype, 'startsWith')), !oe || oe.writable));
 We(
@@ -599,9 +599,9 @@ We(
     startsWith: function (e) {
       var t = String(B(this));
       Ke(e);
-      var n = pe(_e(arguments.length > 1 ? arguments[1] : void 0, t.length)),
+      var n = pe(De(arguments.length > 1 ? arguments[1] : void 0, t.length)),
         i = String(e);
-      return De ? De.call(t, i, n) : t.slice(n, n + i.length) === i;
+      return _e ? _e.call(t, i, n) : t.slice(n, n + i.length) === i;
     }
   }
 );
@@ -844,16 +844,16 @@ var Rt =
   },
   Ht = { f: Ye },
   Lt = J.f,
-  Tt = function (e) {
+  Et = function (e) {
     var t = ae.Symbol || (ae.Symbol = {});
     Z(t, e) || Lt(t, e, { value: Ht.f(e) });
   },
-  Et = J.f,
+  Tt = J.f,
   Yt = Ye('toStringTag'),
   Nt = function (e, t, n) {
     e &&
       !Z((e = n ? e : e.prototype), Yt) &&
-      Et(e, Yt, { configurable: !0, value: t });
+      Tt(e, Yt, { configurable: !0, value: t });
   },
   Kt = [].push,
   Ot = function (e) {
@@ -912,8 +912,8 @@ var Rt =
     filterOut: Ot(7)
   }.forEach,
   jt = M('hidden'),
-  Dt = Ye('toPrimitive'),
-  _t = ce.set,
+  _t = Ye('toPrimitive'),
+  Dt = ce.set,
   Pt = ce.getterFor('Symbol'),
   Mt = Object.prototype,
   qt = l.Symbol,
@@ -951,7 +951,7 @@ var Rt =
   fn = function (e, t) {
     var n = (on[e] = Rt(qt.prototype));
     return (
-      _t(n, { type: 'Symbol', tag: e, description: t }),
+      Dt(n, { type: 'Symbol', tag: e, description: t }),
       g || (n.description = t),
       n
     );
@@ -1036,7 +1036,7 @@ if (
             arguments.length && void 0 !== arguments[0]
               ? String(arguments[0])
               : void 0,
-          t = _(e),
+          t = D(e),
           n = function (e) {
             this === Mt && n.call(cn, e),
               Z(this, jt) && Z(this[jt], t) && (this[jt][t] = !1),
@@ -1050,7 +1050,7 @@ if (
       }
     ),
     se(qt, 'withoutSetter', function (e) {
-      return fn(_(e), e);
+      return fn(D(e), e);
     }),
     (p.f = yn),
     (J.f = pn),
@@ -1070,7 +1070,7 @@ if (
       se(Mt, 'propertyIsEnumerable', yn, { unsafe: !0 }))),
   We({ global: !0, wrap: !0, forced: !ke, sham: !ke }, { Symbol: qt }),
   zt(Zt(un), function (e) {
-    Tt(e);
+    Et(e);
   }),
   We(
     { target: 'Symbol', stat: !0, forced: !ke },
@@ -1154,10 +1154,10 @@ if (
     }
   );
 }
-qt.prototype[Dt] || W(qt.prototype, Dt, qt.prototype.valueOf),
+qt.prototype[_t] || W(qt.prototype, _t, qt.prototype.valueOf),
   Nt(qt, 'Symbol'),
   (q[jt] = !0),
-  Tt('asyncIterator');
+  Et('asyncIterator');
 var Cn = J.f,
   Fn = l.Symbol;
 if (
@@ -1192,18 +1192,18 @@ if (
   }),
     We({ global: !0, forced: !0 }, { Symbol: Sn });
 }
-Tt('hasInstance'),
-  Tt('isConcatSpreadable'),
-  Tt('iterator'),
-  Tt('match'),
-  Tt('matchAll'),
-  Tt('replace'),
-  Tt('search'),
-  Tt('species'),
-  Tt('split'),
-  Tt('toPrimitive'),
-  Tt('toStringTag'),
-  Tt('unscopables'),
+Et('hasInstance'),
+  Et('isConcatSpreadable'),
+  Et('iterator'),
+  Et('match'),
+  Et('matchAll'),
+  Et('replace'),
+  Et('search'),
+  Et('species'),
+  Et('split'),
+  Et('toPrimitive'),
+  Et('toStringTag'),
+  Et('unscopables'),
   Nt(l.JSON, 'JSON', !0),
   Nt(Math, 'Math', !0),
   We({ global: !0 }, { Reflect: {} }),
@@ -1261,19 +1261,19 @@ var wn,
         );
       },
   Ln = Ye('iterator'),
-  Tn = !1;
+  En = !1;
 [].keys &&
   ('next' in (An = [].keys())
     ? (xn = Hn(Hn(An))) !== Object.prototype && (wn = xn)
-    : (Tn = !0)),
+    : (En = !0)),
   null == wn && (wn = {}),
   Z(wn, Ln) ||
     W(wn, Ln, function () {
       return this;
     });
-var En = { IteratorPrototype: wn, BUGGY_SAFARI_ITERATORS: Tn },
+var Tn = { IteratorPrototype: wn, BUGGY_SAFARI_ITERATORS: En },
   Yn = {},
-  Nn = En.IteratorPrototype,
+  Nn = Tn.IteratorPrototype,
   Kn = function () {
     return this;
   },
@@ -1302,10 +1302,10 @@ var En = { IteratorPrototype: wn, BUGGY_SAFARI_ITERATORS: Tn },
           };
         })()
       : void 0),
-  zn = En.IteratorPrototype,
-  jn = En.BUGGY_SAFARI_ITERATORS,
-  Dn = Ye('iterator'),
-  _n = function () {
+  zn = Tn.IteratorPrototype,
+  jn = Tn.BUGGY_SAFARI_ITERATORS,
+  _n = Ye('iterator'),
+  Dn = function () {
     return this;
   },
   Pn = function (e, t, n, i, r, o, c) {
@@ -1334,7 +1334,7 @@ var En = { IteratorPrototype: wn, BUGGY_SAFARI_ITERATORS: Tn },
       d = t + ' Iterator',
       g = !1,
       f = e.prototype,
-      I = f[Dn] || f['@@iterator'] || (r && f[r]),
+      I = f[_n] || f['@@iterator'] || (r && f[r]),
       p = (!jn && I) || l(r),
       y = ('Array' == t && f.entries) || I;
     if (
@@ -1343,7 +1343,7 @@ var En = { IteratorPrototype: wn, BUGGY_SAFARI_ITERATORS: Tn },
         zn !== Object.prototype &&
           s.next &&
           (Hn(s) !== zn &&
-            (On ? On(s, zn) : 'function' != typeof s[Dn] && W(s, Dn, _n)),
+            (On ? On(s, zn) : 'function' != typeof s[_n] && W(s, _n, Dn)),
           Nt(s, d, !0))),
       'values' == r &&
         I &&
@@ -1352,7 +1352,7 @@ var En = { IteratorPrototype: wn, BUGGY_SAFARI_ITERATORS: Tn },
         (p = function () {
           return I.call(this);
         })),
-      f[Dn] !== p && W(f, Dn, p),
+      f[_n] !== p && W(f, _n, p),
       (Yn[t] = p),
       r)
     )
@@ -1488,7 +1488,7 @@ var fi,
   Ci = Object.prototype,
   Fi = Ci.isPrototypeOf,
   Ui = Ye('toStringTag'),
-  Si = _('TYPED_ARRAY_TAG'),
+  Si = D('TYPED_ARRAY_TAG'),
   Zi = Ii && !!On && 'Opera' !== Ft(l.opera),
   Vi = {
     Int8Array: 1,
@@ -1583,24 +1583,24 @@ var Hi = function (e) {
     ki[Wi][e] = !0;
   },
   Li = Object.defineProperty,
-  Ti = {},
-  Ei = function (e) {
+  Ei = {},
+  Ti = function (e) {
     throw e;
   },
   Yi = me.includes,
   Ni = (function (e, t) {
-    if (Z(Ti, e)) return Ti[e];
+    if (Z(Ei, e)) return Ei[e];
     t || (t = {});
     var n = [][e],
       i = !!Z(t, 'ACCESSORS') && t.ACCESSORS,
-      r = Z(t, 0) ? t[0] : Ei,
+      r = Z(t, 0) ? t[0] : Ti,
       o = Z(t, 1) ? t[1] : void 0;
-    return (Ti[e] =
+    return (Ei[e] =
       !!n &&
       !d(function () {
         if (i && !g) return !0;
         var e = { length: -1 };
-        i ? Li(e, 1, { enumerable: !0, get: Ei }) : (e[1] = 1), n.call(e, r, o);
+        i ? Li(e, 1, { enumerable: !0, get: Ti }) : (e[1] = 1), n.call(e, r, o);
       }));
   })('indexOf', { ACCESSORS: !0, 1: 0 });
 We(
@@ -1630,7 +1630,7 @@ var Ki = !d(function () {
   }),
   Oi = a(function (e) {
     var t = J.f,
-      n = _('meta'),
+      n = D('meta'),
       i = 0,
       r =
         Object.isExtensible ||
@@ -1720,12 +1720,12 @@ var Ki = !d(function () {
     }
     return new zi(!1);
   },
-  Di = function (e, t, n) {
+  _i = function (e, t, n) {
     if (!(e instanceof t))
       throw TypeError('Incorrect ' + (n ? n + ' ' : '') + 'invocation');
     return e;
   },
-  _i = function (e, t, n) {
+  Di = function (e, t, n) {
     for (var i in t) se(e, i, t[i], n);
     return e;
   },
@@ -1800,7 +1800,7 @@ var Ki = !d(function () {
             });
         h ||
           (((a = t(function (t, n) {
-            Di(t, a, e);
+            _i(t, a, e);
             var r = (function (e, t, n) {
               var i, r;
               return (
@@ -1834,7 +1834,7 @@ var Ki = !d(function () {
       {
         getConstructor: function (e, t, n, i) {
           var r = e(function (e, o) {
-              Di(e, r, t),
+              _i(e, r, t),
                 $i(e, {
                   type: t,
                   index: Rt(null),
@@ -1877,7 +1877,7 @@ var Ki = !d(function () {
               for (n = i.first; n; n = n.next) if (n.key == t) return n;
             };
           return (
-            _i(r.prototype, {
+            Di(r.prototype, {
               clear: function () {
                 for (var e = o(this), t = e.index, n = e.first; n; )
                   (n.removed = !0),
@@ -1918,7 +1918,7 @@ var Ki = !d(function () {
                 return !!s(this, e);
               }
             }),
-            _i(
+            Di(
               r.prototype,
               n
                 ? {
@@ -3276,7 +3276,7 @@ var Zr = s(
   Lr = function (e) {
     return btoa(e);
   },
-  Tr = function (e) {
+  Er = function (e) {
     return Object.keys(e)
       .filter(function (t) {
         return void 0 !== e[t];
@@ -3286,7 +3286,7 @@ var Zr = s(
       })
       .join('&');
   },
-  Er = function (e) {
+  Tr = function (e) {
     return r(void 0, void 0, void 0, function () {
       var t;
       return o(this, function (n) {
@@ -3477,7 +3477,7 @@ var Kr = function (e, t) {
       })
     );
   };
-function Dr(e, t, n, c, s, a) {
+function _r(e, t, n, c, s, a) {
   return r(this, void 0, void 0, function () {
     var r, u, l, d, g, f, I, p;
     return o(this, function (o) {
@@ -3513,12 +3513,12 @@ function Dr(e, t, n, c, s, a) {
     });
   });
 }
-var _r = function (e) {
+var Dr = function (e) {
     return Array.from(new Set(e));
   },
   Pr = function () {
     for (var e = [], t = 0; t < arguments.length; t++) e[t] = arguments[t];
-    return _r(e.join(' ').trim().split(/\s+/)).join(' ');
+    return Dr(e.join(' ').trim().split(/\s+/)).join(' ');
   };
 function Mr(e, t) {
   var n = e.baseUrl,
@@ -3534,7 +3534,7 @@ function Mr(e, t) {
         case 0:
           return [
             4,
-            Dr(
+            _r(
               n + '/oauth/token',
               c,
               s || 'default',
@@ -4205,7 +4205,7 @@ var fo,
         });
       }),
       (e.prototype._authorizeUrl = function (e) {
-        return this._url('/authorize?' + Tr(e));
+        return this._url('/authorize?' + Er(e));
       }),
       (e.prototype._verifyIdToken = function (e, t, n) {
         return so({
@@ -4236,7 +4236,7 @@ var fo,
                     (s = Lr(Hr())),
                     (a = Lr(Hr())),
                     (u = Hr()),
-                    [4, Er(u)]
+                    [4, Tr(u)]
                   );
                 case 1:
                   return (
@@ -4280,7 +4280,7 @@ var fo,
                     (c = Lr(Hr())),
                     (s = Lr(Hr())),
                     (a = Hr()),
-                    [4, Er(a)]
+                    [4, Tr(a)]
                   );
                 case 1:
                   return (
@@ -4716,26 +4716,44 @@ var fo,
         var t = e.federated,
           n = i(e, ['federated']),
           r = t ? '&federated' : '';
-        return this._url('/v2/logout?' + Tr(n)) + r;
+        return this._url('/v2/logout?' + Er(n)) + r;
       }),
-      (e.prototype.logout = function (e) {
-        console.log('in spa logout');
+      (e.prototype.originBuildLogoutUrl = function (e) {
         void 0 === e && (e = {});
         var t = e.localOnly,
           n = i(e, ['localOnly']);
-        if (t && n.federated) {
-          console.log('logout error');
+        if (t && n.federated)
           throw new Error(
             'It is invalid to set both the `federated` and `localOnly` options to `true`'
           );
-        }
         if (
           (this.cache.clear(),
-          console.log('chache'),
           this.cookieStorage.remove('auth0.is.authenticated'),
           !t)
-        )
-          return this.buildLogoutUrl(n);
+        ) {
+          null !== e.client_id
+            ? (e.client_id = e.client_id || this.options.client_id)
+            : delete e.client_id;
+          var r = e.federated ? '&federated' : '';
+          return this._url('/v2/logout?' + Er(n)) + r;
+        }
+      }),
+      (e.prototype.logout = function (e) {
+        void 0 === e && (e = {});
+        var t = e.localOnly,
+          n = i(e, ['localOnly']);
+        if (t && n.federated)
+          throw new Error(
+            'It is invalid to set both the `federated` and `localOnly` options to `true`'
+          );
+        if (
+          (this.cache.clear(),
+          this.cookieStorage.remove('auth0.is.authenticated'),
+          !t)
+        ) {
+          var r = this.buildLogoutUrl(n);
+          window.location.assign(r);
+        }
       }),
       (e.prototype._getTokenFromIFrame = function (e) {
         return r(this, void 0, void 0, function () {
@@ -4743,7 +4761,7 @@ var fo,
           return o(this, function (o) {
             switch (o.label) {
               case 0:
-                return (t = Lr(Hr())), (r = Lr(Hr())), (c = Hr()), [4, Er(c)];
+                return (t = Lr(Hr())), (r = Lr(Hr())), (c = Hr()), [4, Tr(c)];
               case 1:
                 (s = o.sent()),
                   (a = Nr(s)),
