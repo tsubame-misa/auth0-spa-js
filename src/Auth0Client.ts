@@ -152,7 +152,7 @@ export default class Auth0Client {
     this.cacheLocation = options.cacheLocation || CACHE_LOCATION_MEMORY;
 
     this.cookieStorage = LocalStorage;
-    console.log('cookieStorage = ', this.cookieStorage);
+    //console.log('cookieStorage = ', this.cookieStorage);
 
     this.sessionCheckExpiryDays =
       options.sessionCheckExpiryDays || DEFAULT_SESSION_CHECK_EXPIRY_DAYS;
@@ -311,7 +311,7 @@ export default class Auth0Client {
       ...(organizationId && { organizationId })
     });
 
-    console.log('buildAuthorizeUrl: url + fragment', url, fragment);
+    //console.log('buildAuthorizeUrl: url + fragment', url, fragment);
 
     return url + fragment;
   }
@@ -436,7 +436,7 @@ export default class Auth0Client {
       })
     );
 
-    console.log('getUser :', audience, scope, cache, this.options.client_id);
+    //console.log('getUser :', audience, scope, cache, this.options.client_id);
 
     return cache && cache.decodedToken && (cache.decodedToken.user as TUser);
   }
@@ -482,7 +482,7 @@ export default class Auth0Client {
    */
   public async loginWithRedirect(options: RedirectLoginOptions = {}) {
     const url = await this.buildAuthorizeUrl(options);
-    console.log('loginWithRedirect; url', url);
+    //console.log('loginWithRedirect; url', url);
     window.location.assign(url);
   }
 
@@ -495,11 +495,11 @@ export default class Auth0Client {
   public async handleRedirectCallback(
     url: string = window.location.href
   ): Promise<RedirectLoginResult> {
-    console.log('handleRedirectCallBack_a1');
+    //console.log('handleRedirectCallBack_a1');
 
     const queryStringFragments = url.split('?').slice(1);
 
-    console.log('handleRedirectCallBack_a2');
+    //console.log('handleRedirectCallBack_a2');
 
     if (queryStringFragments.length === 0) {
       throw new Error('There are no query params available for parsing.');
@@ -510,7 +510,7 @@ export default class Auth0Client {
     );
 
     const transaction = this.transactionManager.get();
-    console.log('transcation = ', transaction);
+    //console.log('transcation = ', transaction);
 
     // Transaction should have a `code_verifier` to do PKCE for CSRF protection
     if (!transaction || !transaction.code_verifier) {
@@ -566,7 +566,7 @@ export default class Auth0Client {
       daysUntilExpire: this.sessionCheckExpiryDays
     });
 
-    console.log('transcation.appSate = ', transaction.appState);
+    //console.log('transcation.appSate = ', transaction.appState);
 
     return {
       appState: transaction.appState
@@ -763,7 +763,7 @@ export default class Auth0Client {
    */
   public async isAuthenticated() {
     const user = await this.getUser();
-    console.log('spa isAuthenticated = ', !!user, user);
+    //console.log('spa isAuthenticated = ', !!user, user);
     return !!user;
   }
 

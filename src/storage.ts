@@ -107,15 +107,15 @@ export const SessionStorage = {
 export const LocalStorage = {
   get<T extends Object>(key: string) {
     if (typeof localStorage === 'undefined') {
-      console.log('localStorage : undefind type');
+      //console.log('localStorage : undefind type');
       return;
     }
     const value = localStorage.getItem(key);
     if (typeof value === 'undefined') {
-      console.log('localStorage : undefind');
+      //console.log('localStorage : undefind');
       return;
     }
-    console.log('localStorage ok, value = ', value);
+    //console.log('localStorage ok, value = ', value);
     return <T>JSON.parse(value);
   },
 

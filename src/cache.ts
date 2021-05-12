@@ -23,7 +23,7 @@ export class CacheKey {
 
   static fromKey(key: string): CacheKey {
     const [prefix, client_id, audience, scope] = key.split('::');
-    console.log('CaheKey:', client_id, scope, audience);
+    //console.log('CaheKey:', client_id, scope, audience);
     return new CacheKey({ client_id, scope, audience }, prefix);
   }
 }
