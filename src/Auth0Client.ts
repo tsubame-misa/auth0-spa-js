@@ -782,10 +782,6 @@ export default class Auth0Client {
       delete options.client_id;
     }
 
-    //test
-    this.cache.clear();
-    this.cookieStorage.remove('auth0.is.authenticated');
-
     const { federated, ...logoutOptions } = options;
     const federatedQuery = federated ? `&federated` : '';
     const url = this._url(`/v2/logout?${createQueryParams(logoutOptions)}`);
@@ -809,7 +805,7 @@ export default class Auth0Client {
    * @param options
    */
   public logout(options: LogoutOptions = {}) {
-    /*const { localOnly, ...logoutOptions } = options;
+    const { localOnly, ...logoutOptions } = options;
 
     if (localOnly && logoutOptions.federated) {
       throw new Error(
@@ -821,11 +817,10 @@ export default class Auth0Client {
     this.cookieStorage.remove('auth0.is.authenticated');
 
     if (localOnly) {
-      console.log('Spa login localonly reuturn');
       return;
     }
-    /*const url = this.buildLogoutUrl(logoutOptions);
-    window.location.assign(url);*/
+    //const url = this.buildLogoutUrl(logoutOptions);
+    //window.location.assign(url);
   }
 
   private async _getTokenFromIFrame(

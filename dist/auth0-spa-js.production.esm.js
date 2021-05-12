@@ -242,19 +242,19 @@ var u = function (e) {
     return y.call(e).slice(8, -1);
   },
   m = ''.split,
-  B = d(function () {
+  v = d(function () {
     return !Object('z').propertyIsEnumerable(0);
   })
     ? function (e) {
         return 'String' == b(e) ? m.call(e, '') : Object(e);
       }
     : Object,
-  v = function (e) {
+  B = function (e) {
     if (null == e) throw TypeError("Can't call method on " + e);
     return e;
   },
   C = function (e) {
-    return B(v(e));
+    return v(B(e));
   },
   F = function (e) {
     return 'object' == typeof e ? null !== e : 'function' == typeof e;
@@ -473,14 +473,14 @@ var oe,
     };
   },
   me = { includes: be(!0), indexOf: be(!1) },
-  Be = me.indexOf,
-  ve = function (e, t) {
+  ve = me.indexOf,
+  Be = function (e, t) {
     var n,
       i = C(e),
       r = 0,
       o = [];
     for (n in i) !Z(q, n) && Z(i, n) && o.push(n);
-    for (; t.length > r; ) Z(i, (n = t[r++])) && (~Be(o, n) || o.push(n));
+    for (; t.length > r; ) Z(i, (n = t[r++])) && (~ve(o, n) || o.push(n));
     return o;
   },
   Ce = [
@@ -497,7 +497,7 @@ var oe,
     f:
       Object.getOwnPropertyNames ||
       function (e) {
-        return ve(e, Fe);
+        return Be(e, Fe);
       }
   },
   Se = { f: Object.getOwnPropertySymbols },
@@ -597,7 +597,7 @@ We(
   { target: 'String', proto: !0, forced: !Me && !Pe },
   {
     startsWith: function (e) {
-      var t = String(v(this));
+      var t = String(B(this));
       Ke(e);
       var n = pe(_e(arguments.length > 1 ? arguments[1] : void 0, t.length)),
         i = String(e);
@@ -647,7 +647,7 @@ var qe,
         return 'Array' == b(e);
       }),
   ot = function (e) {
-    return Object(v(e));
+    return Object(B(e));
   },
   ct = function (e, t, n) {
     var i = U(t);
@@ -731,8 +731,8 @@ We(
 );
 var mt = {};
 mt[Ye('toStringTag')] = 'z';
-var Bt = '[object z]' === String(mt),
-  vt = Ye('toStringTag'),
+var vt = '[object z]' === String(mt),
+  Bt = Ye('toStringTag'),
   Ct =
     'Arguments' ==
     b(
@@ -740,7 +740,7 @@ var Bt = '[object z]' === String(mt),
         return arguments;
       })()
     ),
-  Ft = Bt
+  Ft = vt
     ? b
     : function (e) {
         var t, n, i;
@@ -753,7 +753,7 @@ var Bt = '[object z]' === String(mt),
               try {
                 return e[t];
               } catch (e) {}
-            })((t = Object(e)), vt))
+            })((t = Object(e)), Bt))
           ? n
           : Ct
           ? b(t)
@@ -761,17 +761,17 @@ var Bt = '[object z]' === String(mt),
           ? 'Arguments'
           : i;
       },
-  Ut = Bt
+  Ut = vt
     ? {}.toString
     : function () {
         return '[object ' + Ft(this) + ']';
       };
-Bt || se(Object.prototype, 'toString', Ut, { unsafe: !0 });
+vt || se(Object.prototype, 'toString', Ut, { unsafe: !0 });
 var St,
   Zt =
     Object.keys ||
     function (e) {
-      return ve(e, Ce);
+      return Be(e, Ce);
     },
   Vt = g
     ? Object.defineProperties
@@ -869,17 +869,17 @@ var Rt =
         var g,
           f,
           I = ot(a),
-          p = B(I),
+          p = v(I),
           h = tt(u, l, 3),
           y = pe(p.length),
           b = 0,
           m = d || at,
-          v = t ? m(a, y) : n || c ? m(a, 0) : void 0;
+          B = t ? m(a, y) : n || c ? m(a, 0) : void 0;
         y > b;
         b++
       )
         if ((s || b in p) && ((f = h((g = p[b]), b, I)), e))
-          if (t) v[b] = f;
+          if (t) B[b] = f;
           else if (f)
             switch (e) {
               case 3:
@@ -889,16 +889,16 @@ var Rt =
               case 6:
                 return b;
               case 2:
-                Kt.call(v, g);
+                Kt.call(B, g);
             }
           else
             switch (e) {
               case 4:
                 return !1;
               case 7:
-                Kt.call(v, g);
+                Kt.call(B, g);
             }
-      return o ? -1 : i || r ? r : v;
+      return o ? -1 : i || r ? r : B;
     };
   },
   zt = {
@@ -980,7 +980,7 @@ var Rt =
   hn = function (e, t) {
     R(e);
     var n = C(t),
-      i = Zt(n).concat(Bn(n));
+      i = Zt(n).concat(vn(n));
     return (
       zt(i, function (t) {
         (g && !yn.call(n, t)) || pn(e, t, n[t]);
@@ -1016,7 +1016,7 @@ var Rt =
       n
     );
   },
-  Bn = function (e) {
+  vn = function (e) {
     var t = e === Mt,
       n = nn(t ? cn : C(e)),
       i = [];
@@ -1056,7 +1056,7 @@ if (
     (J.f = pn),
     (A.f = bn),
     (Ue.f = kt.f = mn),
-    (Se.f = Bn),
+    (Se.f = vn),
     (Ht.f = function (e) {
       return fn(Ye(e), e);
     }),
@@ -1106,7 +1106,7 @@ if (
   ),
   We(
     { target: 'Object', stat: !0, forced: !ke },
-    { getOwnPropertyNames: mn, getOwnPropertySymbols: Bn }
+    { getOwnPropertyNames: mn, getOwnPropertySymbols: vn }
   ),
   We(
     {
@@ -1124,7 +1124,7 @@ if (
   ),
   $t)
 ) {
-  var vn =
+  var Bn =
     !ke ||
     d(function () {
       var e = qt();
@@ -1133,7 +1133,7 @@ if (
       );
     });
   We(
-    { target: 'JSON', stat: !0, forced: vn },
+    { target: 'JSON', stat: !0, forced: Bn },
     {
       stringify: function (e, t, n) {
         for (var i, r = [e], o = 1; arguments.length > o; )
@@ -1216,7 +1216,7 @@ var wn,
     return function (t, n) {
       var i,
         r,
-        o = String(v(t)),
+        o = String(B(t)),
         c = fe(n),
         s = o.length;
       return c < 0 || c >= s
@@ -1483,8 +1483,8 @@ var fi,
   yi = hi && hi.prototype,
   bi = l.Uint8ClampedArray,
   mi = bi && bi.prototype,
-  Bi = hi && Hn(hi),
-  vi = yi && Hn(yi),
+  vi = hi && Hn(hi),
+  Bi = yi && Hn(yi),
   Ci = Object.prototype,
   Fi = Ci.isPrototypeOf,
   Ui = Ye('toStringTag'),
@@ -1506,18 +1506,18 @@ var fi,
   };
 for (fi in Vi) l[fi] || (Zi = !1);
 if (
-  (!Zi || 'function' != typeof Bi || Bi === Function.prototype) &&
-  ((Bi = function () {
+  (!Zi || 'function' != typeof vi || vi === Function.prototype) &&
+  ((vi = function () {
     throw TypeError('Incorrect invocation');
   }),
   Zi)
 )
-  for (fi in Vi) l[fi] && On(l[fi], Bi);
-if ((!Zi || !vi || vi === Ci) && ((vi = Bi.prototype), Zi))
-  for (fi in Vi) l[fi] && On(l[fi].prototype, vi);
-if ((Zi && Hn(mi) !== vi && On(mi, vi), g && !Z(vi, Ui)))
+  for (fi in Vi) l[fi] && On(l[fi], vi);
+if ((!Zi || !Bi || Bi === Ci) && ((Bi = vi.prototype), Zi))
+  for (fi in Vi) l[fi] && On(l[fi].prototype, Bi);
+if ((Zi && Hn(mi) !== Bi && On(mi, Bi), g && !Z(Bi, Ui)))
   for (fi in (!0,
-  pi(vi, Ui, {
+  pi(Bi, Ui, {
     get: function () {
       return F(this) ? this[Si] : void 0;
     }
@@ -1530,7 +1530,7 @@ var Xi = function (e) {
   },
   wi = function (e) {
     if (On) {
-      if (Fi.call(Bi, e)) return e;
+      if (Fi.call(vi, e)) return e;
     } else
       for (var t in Vi)
         if (Z(Vi, fi)) {
@@ -1546,7 +1546,7 @@ var Xi = function (e) {
           var r = l[i];
           r && Z(r.prototype, e) && delete r.prototype[e];
         }
-      (vi[e] && !n) || se(vi, e, n ? t : (Zi && yi[e]) || t);
+      (Bi[e] && !n) || se(Bi, e, n ? t : (Zi && yi[e]) || t);
     }
   },
   Ai = Ye('species'),
@@ -1617,7 +1617,7 @@ We(
   { target: 'String', proto: !0, forced: !ze('includes') },
   {
     includes: function (e) {
-      return !!~String(v(this)).indexOf(
+      return !!~String(B(this)).indexOf(
         Ke(e),
         arguments.length > 1 ? arguments[1] : void 0
       );
@@ -2147,10 +2147,10 @@ function br(e, t) {
           try {
             i = n(e._value);
           } catch (e) {
-            return void Br(t.promise, e);
+            return void vr(t.promise, e);
           }
           mr(t.promise, i);
-        } else (1 === e._state ? mr : Br)(t.promise, e._value);
+        } else (1 === e._state ? mr : vr)(t.promise, e._value);
       }))
     : e._deferreds.push(t);
 }
@@ -2160,7 +2160,7 @@ function mr(e, t) {
       throw new TypeError('A promise cannot be resolved with itself.');
     if (t && ('object' == typeof t || 'function' == typeof t)) {
       var n = t.then;
-      if (t instanceof yr) return (e._state = 3), (e._value = t), void vr(e);
+      if (t instanceof yr) return (e._state = 3), (e._value = t), void Br(e);
       if ('function' == typeof n)
         return void Fr(
           ((i = n),
@@ -2171,16 +2171,16 @@ function mr(e, t) {
           e
         );
     }
-    (e._state = 1), (e._value = t), vr(e);
+    (e._state = 1), (e._value = t), Br(e);
   } catch (t) {
-    Br(e, t);
+    vr(e, t);
   }
   var i, r;
 }
-function Br(e, t) {
-  (e._state = 2), (e._value = t), vr(e);
+function vr(e, t) {
+  (e._state = 2), (e._value = t), Br(e);
 }
-function vr(e) {
+function Br(e) {
   2 === e._state &&
     0 === e._deferreds.length &&
     yr._immediateFn(function () {
@@ -2202,12 +2202,12 @@ function Fr(e, t) {
         n || ((n = !0), mr(t, e));
       },
       function (e) {
-        n || ((n = !0), Br(t, e));
+        n || ((n = !0), vr(t, e));
       }
     );
   } catch (e) {
     if (n) return;
-    (n = !0), Br(t, e);
+    (n = !0), vr(t, e);
   }
 }
 (yr.prototype.catch = function (e) {
@@ -4066,7 +4066,7 @@ var fo,
     }),
   bo = {},
   mo = new Zr(),
-  Bo = {
+  vo = {
     memory: function () {
       return new io().enclosedCache;
     },
@@ -4074,8 +4074,8 @@ var fo,
       return new no();
     }
   },
-  vo = function (e) {
-    return Bo[e];
+  Bo = function (e) {
+    return vo[e];
   },
   Co = function () {
     return !/Trident.*rv:11\.0/.test(navigator.userAgent);
@@ -4099,13 +4099,13 @@ var fo,
         (this.cacheLocation = e.cacheLocation || 'memory'),
         (this.cookieStorage = lo),
         (this.sessionCheckExpiryDays = e.sessionCheckExpiryDays || 1),
-        !vo(this.cacheLocation))
+        !Bo(this.cacheLocation))
       )
         throw new Error('Invalid cache location "' + this.cacheLocation + '"');
       var r,
         o,
         c = e.useCookiesForTransactions ? this.cookieStorage : uo;
-      (this.cache = vo(this.cacheLocation)()),
+      (this.cache = Bo(this.cacheLocation)()),
         (this.scope = this.options.scope),
         (this.transactionManager = new ro(c)),
         (this.domainUrl = 'https://' + this.options.domain),
@@ -4712,15 +4712,22 @@ var fo,
         void 0 === e && (e = {}),
           null !== e.client_id
             ? (e.client_id = e.client_id || this.options.client_id)
-            : delete e.client_id,
-          this.cache.clear(),
-          this.cookieStorage.remove('auth0.is.authenticated');
+            : delete e.client_id;
         var t = e.federated,
           n = i(e, ['federated']),
           r = t ? '&federated' : '';
         return this._url('/v2/logout?' + Tr(n)) + r;
       }),
-      (e.prototype.logout = function (e) {}),
+      (e.prototype.logout = function (e) {
+        void 0 === e && (e = {});
+        var t = e.localOnly,
+          n = i(e, ['localOnly']);
+        if (t && n.federated)
+          throw new Error(
+            'It is invalid to set both the `federated` and `localOnly` options to `true`'
+          );
+        this.cache.clear(), this.cookieStorage.remove('auth0.is.authenticated');
+      }),
       (e.prototype._getTokenFromIFrame = function (e) {
         return r(this, void 0, void 0, function () {
           var t, r, c, s, a, u, l, d, g, f, I, p, h, y, b;

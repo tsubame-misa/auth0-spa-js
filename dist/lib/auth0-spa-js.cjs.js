@@ -6162,9 +6162,6 @@ var Auth0Client = /** @class */ (function () {
     } else {
       delete options.client_id;
     }
-    //test
-    this.cache.clear();
-    this.cookieStorage.remove('auth0.is.authenticated');
     var federated = options.federated,
       logoutOptions = __rest(options, ['federated']);
     var federatedQuery = federated ? '&federated' : '';
@@ -6187,23 +6184,23 @@ var Auth0Client = /** @class */ (function () {
    * @param options
    */
   Auth0Client.prototype.logout = function (options) {
-    /*const { localOnly, ...logoutOptions } = options;
-    
-        if (localOnly && logoutOptions.federated) {
-          throw new Error(
-            'It is invalid to set both the `federated` and `localOnly` options to `true`'
-          );
-        }
-    
-        this.cache.clear();
-        this.cookieStorage.remove('auth0.is.authenticated');
-    
-        if (localOnly) {
-          console.log('Spa login localonly reuturn');
-          return;
-        }
-        /*const url = this.buildLogoutUrl(logoutOptions);
-        window.location.assign(url);*/
+    if (options === void 0) {
+      options = {};
+    }
+    var localOnly = options.localOnly,
+      logoutOptions = __rest(options, ['localOnly']);
+    if (localOnly && logoutOptions.federated) {
+      throw new Error(
+        'It is invalid to set both the `federated` and `localOnly` options to `true`'
+      );
+    }
+    this.cache.clear();
+    this.cookieStorage.remove('auth0.is.authenticated');
+    if (localOnly) {
+      return;
+    }
+    //const url = this.buildLogoutUrl(logoutOptions);
+    //window.location.assign(url);
   };
   Auth0Client.prototype._getTokenFromIFrame = function (options) {
     return __awaiter(this, void 0, void 0, function () {

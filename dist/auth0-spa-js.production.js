@@ -264,12 +264,12 @@
           return 'String' == b(e) ? m.call(e, '') : Object(e);
         }
       : Object,
-    B = function (e) {
+    v = function (e) {
       if (null == e) throw TypeError("Can't call method on " + e);
       return e;
     },
-    v = function (e) {
-      return C(B(e));
+    B = function (e) {
+      return C(v(e));
     },
     F = function (e) {
       return 'object' == typeof e ? null !== e : 'function' == typeof e;
@@ -310,7 +310,7 @@
       f: g
         ? x
         : function (e, t) {
-            if (((e = v(e)), (t = U(t, !0)), w))
+            if (((e = B(e)), (t = U(t, !0)), w))
               try {
                 return x(e, t);
               } catch (e) {}
@@ -478,7 +478,7 @@
     me = function (e) {
       return function (t, n, i) {
         var r,
-          o = v(t),
+          o = B(t),
           c = pe(o.length),
           s = (function (e, t) {
             var n = Ie(e);
@@ -493,14 +493,14 @@
       };
     },
     Ce = { includes: me(!0), indexOf: me(!1) },
-    Be = Ce.indexOf,
-    ve = function (e, t) {
+    ve = Ce.indexOf,
+    Be = function (e, t) {
       var n,
-        i = v(e),
+        i = B(e),
         r = 0,
         o = [];
       for (n in i) !S($, n) && S(i, n) && o.push(n);
-      for (; t.length > r; ) S(i, (n = t[r++])) && (~Be(o, n) || o.push(n));
+      for (; t.length > r; ) S(i, (n = t[r++])) && (~ve(o, n) || o.push(n));
       return o;
     },
     Fe = [
@@ -517,7 +517,7 @@
       f:
         Object.getOwnPropertyNames ||
         function (e) {
-          return ve(e, Ue);
+          return Be(e, Ue);
         }
     },
     Se = { f: Object.getOwnPropertySymbols },
@@ -619,7 +619,7 @@
     { target: 'String', proto: !0, forced: !qe && !Me },
     {
       startsWith: function (e) {
-        var t = String(B(this));
+        var t = String(v(this));
         Oe(e);
         var n = pe(Pe(arguments.length > 1 ? arguments[1] : void 0, t.length)),
           i = String(e);
@@ -669,7 +669,7 @@
           return 'Array' == b(e);
         }),
     ct = function (e) {
-      return Object(B(e));
+      return Object(v(e));
     },
     st = function (e, t, n) {
       var i = U(t);
@@ -722,7 +722,7 @@
         })
       );
     })('concat'),
-    Bt = function (e) {
+    vt = function (e) {
       if (!F(e)) return !1;
       var t = e[pt];
       return void 0 !== t ? !!t : ot(e);
@@ -740,7 +740,7 @@
           s = ut(c, 0),
           a = 0;
         for (t = -1, i = arguments.length; t < i; t++)
-          if (Bt((o = -1 === t ? c : arguments[t]))) {
+          if (vt((o = -1 === t ? c : arguments[t]))) {
             if (a + (r = pe(o.length)) > yt) throw TypeError(bt);
             for (n = 0; n < r; n++, a++) n in o && st(s, a, o[n]);
           } else {
@@ -751,9 +751,9 @@
       }
     }
   );
-  var vt = {};
-  vt[Ne('toStringTag')] = 'z';
-  var Ft = '[object z]' === String(vt),
+  var Bt = {};
+  Bt[Ne('toStringTag')] = 'z';
+  var Ft = '[object z]' === String(Bt),
     Ut = Ne('toStringTag'),
     Zt =
       'Arguments' ==
@@ -793,7 +793,7 @@
     Xt =
       Object.keys ||
       function (e) {
-        return ve(e, Fe);
+        return Be(e, Fe);
       },
     wt = g
       ? Object.defineProperties
@@ -861,7 +861,7 @@
                 return Lt.slice();
               }
             })(e)
-          : Ht(v(e));
+          : Ht(B(e));
       }
     },
     Et = { f: Ne },
@@ -896,12 +896,12 @@
             y = pe(h.length),
             b = 0,
             m = d || ut,
-            B = t ? m(a, y) : n || c ? m(a, 0) : void 0;
+            v = t ? m(a, y) : n || c ? m(a, 0) : void 0;
           y > b;
           b++
         )
           if ((s || b in h) && ((f = p((g = h[b]), b, I)), e))
-            if (t) B[b] = f;
+            if (t) v[b] = f;
             else if (f)
               switch (e) {
                 case 3:
@@ -911,16 +911,16 @@
                 case 6:
                   return b;
                 case 2:
-                  jt.call(B, g);
+                  jt.call(v, g);
               }
             else
               switch (e) {
                 case 4:
                   return !1;
                 case 7:
-                  jt.call(B, g);
+                  jt.call(v, g);
               }
-        return o ? -1 : i || r ? r : B;
+        return o ? -1 : i || r ? r : v;
       };
     },
     _t = {
@@ -1000,16 +1000,16 @@
     },
     Cn = function (e, t) {
       R(e);
-      var n = v(t),
+      var n = B(t),
         i = Xt(n).concat(Un(n));
       return (
         _t(i, function (t) {
-          (g && !Bn.call(n, t)) || mn(e, t, n[t]);
+          (g && !vn.call(n, t)) || mn(e, t, n[t]);
         }),
         e
       );
     },
-    Bn = function (e) {
+    vn = function (e) {
       var t = U(e, !0),
         n = an.call(this, t);
       return (
@@ -1017,8 +1017,8 @@
         (!(n || !S(this, t) || !S(un, t) || (S(this, Pt) && this[Pt][t])) || n)
       );
     },
-    vn = function (e, t) {
-      var n = v(e),
+    Bn = function (e, t) {
+      var n = B(e),
         i = U(t, !0);
       if (n !== tn || !S(un, i) || S(ln, i)) {
         var r = on(n, i);
@@ -1028,7 +1028,7 @@
       }
     },
     Fn = function (e) {
-      var t = sn(v(e)),
+      var t = sn(B(e)),
         n = [];
       return (
         _t(t, function (e) {
@@ -1039,7 +1039,7 @@
     },
     Un = function (e) {
       var t = e === tn,
-        n = sn(t ? ln : v(e)),
+        n = sn(t ? ln : B(e)),
         i = [];
       return (
         _t(n, function (e) {
@@ -1074,9 +1074,9 @@
       ae(nn, 'withoutSetter', function (e) {
         return yn(P(e), e);
       }),
-      (h.f = Bn),
+      (h.f = vn),
       (J.f = mn),
-      (A.f = vn),
+      (A.f = Bn),
       (Ze.f = Tt.f = Fn),
       (Se.f = Un),
       (Et.f = function (e) {
@@ -1089,7 +1089,7 @@
             return en(this).description;
           }
         }),
-        ae(tn, 'propertyIsEnumerable', Bn, { unsafe: !0 }))),
+        ae(tn, 'propertyIsEnumerable', vn, { unsafe: !0 }))),
     He({ global: !0, wrap: !0, forced: !ke, sham: !ke }, { Symbol: nn }),
     _t(Xt(fn), function (e) {
       Nt(e);
@@ -1123,7 +1123,7 @@
         },
         defineProperty: mn,
         defineProperties: Cn,
-        getOwnPropertyDescriptor: vn
+        getOwnPropertyDescriptor: Bn
       }
     ),
     He(
@@ -1238,7 +1238,7 @@
       return function (t, n) {
         var i,
           r,
-          o = String(B(t)),
+          o = String(v(t)),
           c = Ie(n),
           s = o.length;
         return c < 0 || c >= s
@@ -1503,8 +1503,8 @@
     }
   );
   ue.Array.from;
-  var Bi,
-    vi = 'undefined' != typeof ArrayBuffer && 'undefined' != typeof DataView,
+  var vi,
+    Bi = 'undefined' != typeof ArrayBuffer && 'undefined' != typeof DataView,
     Fi = J.f,
     Ui = l.Int8Array,
     Zi = Ui && Ui.prototype,
@@ -1516,7 +1516,7 @@
     xi = wi.isPrototypeOf,
     Ai = Ne('toStringTag'),
     Ri = P('TYPED_ARRAY_TAG'),
-    Qi = vi && !!_n && 'Opera' !== St(l.opera),
+    Qi = Bi && !!_n && 'Opera' !== St(l.opera),
     Ji = {
       Int8Array: 1,
       Uint8Array: 1,
@@ -1531,7 +1531,7 @@
     Wi = function (e) {
       return F(e) && S(Ji, St(e));
     };
-  for (Bi in Ji) l[Bi] || (Qi = !1);
+  for (vi in Ji) l[vi] || (Qi = !1);
   if (
     (!Qi || 'function' != typeof Gi || Gi === Function.prototype) &&
     ((Gi = function () {
@@ -1539,18 +1539,18 @@
     }),
     Qi)
   )
-    for (Bi in Ji) l[Bi] && _n(l[Bi], Gi);
+    for (vi in Ji) l[vi] && _n(l[vi], Gi);
   if ((!Qi || !Xi || Xi === wi) && ((Xi = Gi.prototype), Qi))
-    for (Bi in Ji) l[Bi] && _n(l[Bi].prototype, Xi);
+    for (vi in Ji) l[vi] && _n(l[vi].prototype, Xi);
   if ((Qi && Yn(Vi) !== Xi && _n(Vi, Xi), g && !S(Xi, Ai)))
-    for (Bi in (!0,
+    for (vi in (!0,
     Fi(Xi, Ai, {
       get: function () {
         return F(this) ? this[Ri] : void 0;
       }
     }),
     Ji))
-      l[Bi] && W(l[Bi], Ri, Bi);
+      l[vi] && W(l[vi], Ri, vi);
   var Hi = function (e) {
       if (Wi(e)) return e;
       throw TypeError('Target is not a typed array');
@@ -1560,7 +1560,7 @@
         if (xi.call(Gi, e)) return e;
       } else
         for (var t in Ji)
-          if (S(Ji, Bi)) {
+          if (S(Ji, vi)) {
             var n = l[t];
             if (n && (e === n || xi.call(n, e))) return e;
           }
@@ -1645,7 +1645,7 @@
     { target: 'String', proto: !0, forced: !je('includes') },
     {
       includes: function (e) {
-        return !!~String(B(this)).indexOf(
+        return !!~String(v(this)).indexOf(
           Oe(e),
           arguments.length > 1 ? arguments[1] : void 0
         );
@@ -2065,7 +2065,7 @@
       Array,
       'Array',
       function (e, t) {
-        dr(this, { type: lr, target: v(e), index: 0, kind: t });
+        dr(this, { type: lr, target: B(e), index: 0, kind: t });
       },
       function () {
         var e = gr(this),
@@ -2107,7 +2107,7 @@
     }
   }
   ue.Set;
-  function Br(e) {
+  function vr(e) {
     var t = this.constructor;
     return this.then(
       function (n) {
@@ -2122,7 +2122,7 @@
       }
     );
   }
-  function vr(e) {
+  function Br(e) {
     return new this(function (t, n) {
       if (!e || void 0 === e.length)
         return n(
@@ -2251,7 +2251,7 @@
       var n = new this.constructor(Zr);
       return Vr(this, new xr(e, t, n)), n;
     }),
-    (Sr.prototype.finally = Br),
+    (Sr.prototype.finally = vr),
     (Sr.all = function (e) {
       return new Sr(function (t, n) {
         if (!Ur(e)) return n(new TypeError('Promise.all accepts an array'));
@@ -2279,7 +2279,7 @@
         for (var c = 0; c < i.length; c++) o(c, i[c]);
       });
     }),
-    (Sr.allSettled = vr),
+    (Sr.allSettled = Br),
     (Sr.resolve = function (e) {
       return e && 'object' == typeof e && e.constructor === Sr
         ? e
@@ -2320,8 +2320,8 @@
   'function' != typeof Rr.Promise
     ? (Rr.Promise = Sr)
     : Rr.Promise.prototype.finally
-    ? Rr.Promise.allSettled || (Rr.Promise.allSettled = vr)
-    : (Rr.Promise.prototype.finally = Br),
+    ? Rr.Promise.allSettled || (Rr.Promise.allSettled = Br)
+    : (Rr.Promise.prototype.finally = vr),
     (function (e) {
       function t() {}
       function n(e, t) {
@@ -4055,7 +4055,7 @@
     });
   s(Co);
   Co.encode, Co.parse, Co.getAll, Co.get, Co.set, Co.remove;
-  var Bo = {
+  var vo = {
       get: function (e) {
         if ('undefined' != typeof sessionStorage) {
           var t = sessionStorage.getItem(e);
@@ -4069,7 +4069,7 @@
         sessionStorage.removeItem(e);
       }
     },
-    vo = {
+    Bo = {
       get: function (e) {
         if ('undefined' != typeof localStorage) {
           var t = localStorage.getItem(e);
@@ -4150,7 +4150,7 @@
                 );
             })(),
           (this.cacheLocation = e.cacheLocation || Hr),
-          (this.cookieStorage = vo),
+          (this.cookieStorage = Bo),
           (this.sessionCheckExpiryDays = e.sessionCheckExpiryDays || 1),
           !Ro(this.cacheLocation))
         )
@@ -4159,7 +4159,7 @@
           );
         var r,
           o,
-          c = e.useCookiesForTransactions ? this.cookieStorage : Bo;
+          c = e.useCookiesForTransactions ? this.cookieStorage : vo;
         (this.cache = Ro(this.cacheLocation)()),
           (this.scope = this.options.scope),
           (this.transactionManager = new po(c)),
@@ -4771,15 +4771,23 @@
           void 0 === e && (e = {}),
             null !== e.client_id
               ? (e.client_id = e.client_id || this.options.client_id)
-              : delete e.client_id,
-            this.cache.clear(),
-            this.cookieStorage.remove('auth0.is.authenticated');
+              : delete e.client_id;
           var t = e.federated,
             n = i(e, ['federated']),
             r = t ? '&federated' : '';
           return this._url('/v2/logout?' + Pr(n)) + r;
         }),
-        (e.prototype.logout = function (e) {}),
+        (e.prototype.logout = function (e) {
+          void 0 === e && (e = {});
+          var t = e.localOnly,
+            n = i(e, ['localOnly']);
+          if (t && n.federated)
+            throw new Error(
+              'It is invalid to set both the `federated` and `localOnly` options to `true`'
+            );
+          this.cache.clear(),
+            this.cookieStorage.remove('auth0.is.authenticated');
+        }),
         (e.prototype._getTokenFromIFrame = function (e) {
           return r(this, void 0, void 0, function () {
             var t, r, c, s, a, u, l, d, g, f, I, h, p, y, b;
