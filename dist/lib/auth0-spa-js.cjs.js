@@ -6162,6 +6162,9 @@ var Auth0Client = /** @class */ (function () {
     } else {
       delete options.client_id;
     }
+    //test
+    this.cache.clear();
+    this.cookieStorage.remove('auth0.is.authenticated');
     var federated = options.federated,
       logoutOptions = __rest(options, ['federated']);
     var federatedQuery = federated ? '&federated' : '';
