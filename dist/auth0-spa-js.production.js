@@ -257,19 +257,19 @@
       return y.call(t).slice(8, -1);
     },
     m = ''.split,
-    v = d(function () {
+    C = d(function () {
       return !Object('z').propertyIsEnumerable(0);
     })
       ? function (t) {
           return 'String' == b(t) ? m.call(t, '') : Object(t);
         }
       : Object,
-    C = function (t) {
+    v = function (t) {
       if (null == t) throw TypeError("Can't call method on " + t);
       return t;
     },
     B = function (t) {
-      return v(C(t));
+      return C(v(t));
     },
     F = function (t) {
       return 'object' == typeof t ? null !== t : 'function' == typeof t;
@@ -492,15 +492,15 @@
         return !t && -1;
       };
     },
-    vt = { includes: mt(!0), indexOf: mt(!1) },
-    Ct = vt.indexOf,
+    Ct = { includes: mt(!0), indexOf: mt(!1) },
+    vt = Ct.indexOf,
     Bt = function (t, e) {
       var n,
         i = B(t),
         r = 0,
         o = [];
       for (n in i) !S($, n) && S(i, n) && o.push(n);
-      for (; e.length > r; ) S(i, (n = e[r++])) && (~Ct(o, n) || o.push(n));
+      for (; e.length > r; ) S(i, (n = e[r++])) && (~vt(o, n) || o.push(n));
       return o;
     },
     Ft = [
@@ -619,7 +619,7 @@
     { target: 'String', proto: !0, forced: !qt && !Mt },
     {
       startsWith: function (t) {
-        var e = String(C(this));
+        var e = String(v(this));
         Ot(t);
         var n = pt(Pt(arguments.length > 1 ? arguments[1] : void 0, e.length)),
           i = String(t);
@@ -669,7 +669,7 @@
           return 'Array' == b(t);
         }),
     ce = function (t) {
-      return Object(C(t));
+      return Object(v(t));
     },
     se = function (t, e, n) {
       var i = U(e);
@@ -708,7 +708,7 @@
         var t = [];
         return (t[pe] = !1), t.concat()[0] !== t;
       }),
-    ve = (function (t) {
+    Ce = (function (t) {
       return (
         Ie >= 51 ||
         !d(function () {
@@ -722,13 +722,13 @@
         })
       );
     })('concat'),
-    Ce = function (t) {
+    ve = function (t) {
       if (!F(t)) return !1;
       var e = t[pe];
       return void 0 !== e ? !!e : oe(t);
     };
   Ht(
-    { target: 'Array', proto: !0, forced: !me || !ve },
+    { target: 'Array', proto: !0, forced: !me || !Ce },
     {
       concat: function (t) {
         var e,
@@ -740,7 +740,7 @@
           s = ue(c, 0),
           a = 0;
         for (e = -1, i = arguments.length; e < i; e++)
-          if (Ce((o = -1 === e ? c : arguments[e]))) {
+          if (ve((o = -1 === e ? c : arguments[e]))) {
             if (a + (r = pt(o.length)) > ye) throw TypeError(be);
             for (n = 0; n < r; n++, a++) n in o && se(s, a, o[n]);
           } else {
@@ -891,17 +891,17 @@
           var g,
             f,
             I = ce(a),
-            h = v(I),
+            h = C(I),
             p = ne(u, l, 3),
             y = pt(h.length),
             b = 0,
             m = d || ue,
-            C = e ? m(a, y) : n || c ? m(a, 0) : void 0;
+            v = e ? m(a, y) : n || c ? m(a, 0) : void 0;
           y > b;
           b++
         )
           if ((s || b in h) && ((f = p((g = h[b]), b, I)), t))
-            if (e) C[b] = f;
+            if (e) v[b] = f;
             else if (f)
               switch (t) {
                 case 3:
@@ -911,16 +911,16 @@
                 case 6:
                   return b;
                 case 2:
-                  je.call(C, g);
+                  je.call(v, g);
               }
             else
               switch (t) {
                 case 4:
                   return !1;
                 case 7:
-                  je.call(C, g);
+                  je.call(v, g);
               }
-        return o ? -1 : i || r ? r : C;
+        return o ? -1 : i || r ? r : v;
       };
     },
     _e = {
@@ -998,18 +998,18 @@
           : cn(t, i, n)
       );
     },
-    vn = function (t, e) {
+    Cn = function (t, e) {
       R(t);
       var n = B(e),
         i = Xe(n).concat(Un(n));
       return (
         _e(i, function (e) {
-          (g && !Cn.call(n, e)) || mn(t, e, n[e]);
+          (g && !vn.call(n, e)) || mn(t, e, n[e]);
         }),
         t
       );
     },
-    Cn = function (t) {
+    vn = function (t) {
       var e = U(t, !0),
         n = an.call(this, e);
       return (
@@ -1074,7 +1074,7 @@
       at(nn, 'withoutSetter', function (t) {
         return yn(P(t), t);
       }),
-      (h.f = Cn),
+      (h.f = vn),
       (J.f = mn),
       (A.f = Bn),
       (Zt.f = Te.f = Fn),
@@ -1089,7 +1089,7 @@
             return tn(this).description;
           }
         }),
-        at(en, 'propertyIsEnumerable', Cn, { unsafe: !0 }))),
+        at(en, 'propertyIsEnumerable', vn, { unsafe: !0 }))),
     Ht({ global: !0, wrap: !0, forced: !kt, sham: !kt }, { Symbol: nn }),
     _e(Xe(fn), function (t) {
       Ne(t);
@@ -1119,10 +1119,10 @@
       { target: 'Object', stat: !0, forced: !kt, sham: !g },
       {
         create: function (t, e) {
-          return void 0 === e ? We(t) : vn(We(t), e);
+          return void 0 === e ? We(t) : Cn(We(t), e);
         },
         defineProperty: mn,
-        defineProperties: vn,
+        defineProperties: Cn,
         getOwnPropertyDescriptor: Bn
       }
     ),
@@ -1238,7 +1238,7 @@
       return function (e, n) {
         var i,
           r,
-          o = String(C(e)),
+          o = String(v(e)),
           c = It(n),
           s = o.length;
         return c < 0 || c >= s
@@ -1465,11 +1465,11 @@
       } catch (t) {}
       return n;
     },
-    vi = !mi(function (t) {
+    Ci = !mi(function (t) {
       Array.from(t);
     });
   Ht(
-    { target: 'Array', stat: !0, forced: vi },
+    { target: 'Array', stat: !0, forced: Ci },
     {
       from: function (t) {
         var e,
@@ -1503,7 +1503,7 @@
     }
   );
   ut.Array.from;
-  var Ci,
+  var vi,
     Bi = 'undefined' != typeof ArrayBuffer && 'undefined' != typeof DataView,
     Fi = J.f,
     Ui = l.Int8Array,
@@ -1531,7 +1531,7 @@
     Wi = function (t) {
       return F(t) && S(Ji, Se(t));
     };
-  for (Ci in Ji) l[Ci] || (Qi = !1);
+  for (vi in Ji) l[vi] || (Qi = !1);
   if (
     (!Qi || 'function' != typeof Gi || Gi === Function.prototype) &&
     ((Gi = function () {
@@ -1539,18 +1539,18 @@
     }),
     Qi)
   )
-    for (Ci in Ji) l[Ci] && _n(l[Ci], Gi);
+    for (vi in Ji) l[vi] && _n(l[vi], Gi);
   if ((!Qi || !Xi || Xi === wi) && ((Xi = Gi.prototype), Qi))
-    for (Ci in Ji) l[Ci] && _n(l[Ci].prototype, Xi);
+    for (vi in Ji) l[vi] && _n(l[vi].prototype, Xi);
   if ((Qi && Yn(Vi) !== Xi && _n(Vi, Xi), g && !S(Xi, Ai)))
-    for (Ci in (!0,
+    for (vi in (!0,
     Fi(Xi, Ai, {
       get: function () {
         return F(this) ? this[Ri] : void 0;
       }
     }),
     Ji))
-      l[Ci] && W(l[Ci], Ri, Ci);
+      l[vi] && W(l[vi], Ri, vi);
   var Hi = function (t) {
       if (Wi(t)) return t;
       throw TypeError('Target is not a typed array');
@@ -1560,7 +1560,7 @@
         if (xi.call(Gi, t)) return t;
       } else
         for (var e in Ji)
-          if (S(Ji, Ci)) {
+          if (S(Ji, vi)) {
             var n = l[e];
             if (n && (t === n || xi.call(n, t))) return t;
           }
@@ -1614,7 +1614,7 @@
     _i = function (t) {
       throw t;
     },
-    Pi = vt.includes,
+    Pi = Ct.includes,
     Mi = (function (t, e) {
       if (S(Di, t)) return Di[t];
       e || (e = {});
@@ -1645,7 +1645,7 @@
     { target: 'String', proto: !0, forced: !jt('includes') },
     {
       includes: function (t) {
-        return !!~String(C(this)).indexOf(
+        return !!~String(v(this)).indexOf(
           Ot(t),
           arguments.length > 1 ? arguments[1] : void 0
         );
@@ -2097,17 +2097,17 @@
           mr[Ir] = pr;
         }
       if ((mr[hr] || W(mr, hr, yr), ur[yr]))
-        for (var vr in fr)
-          if (mr[vr] !== fr[vr])
+        for (var Cr in fr)
+          if (mr[Cr] !== fr[Cr])
             try {
-              W(mr, vr, fr[vr]);
+              W(mr, Cr, fr[Cr]);
             } catch (t) {
-              mr[vr] = fr[vr];
+              mr[Cr] = fr[Cr];
             }
     }
   }
   ut.Set;
-  function Cr(t) {
+  function vr(t) {
     var e = this.constructor;
     return this.then(
       function (n) {
@@ -2251,7 +2251,7 @@
       var n = new this.constructor(Zr);
       return Vr(this, new xr(t, e, n)), n;
     }),
-    (Sr.prototype.finally = Cr),
+    (Sr.prototype.finally = vr),
     (Sr.all = function (t) {
       return new Sr(function (e, n) {
         if (!Ur(t)) return n(new TypeError('Promise.all accepts an array'));
@@ -2321,7 +2321,7 @@
     ? (Rr.Promise = Sr)
     : Rr.Promise.prototype.finally
     ? Rr.Promise.allSettled || (Rr.Promise.allSettled = Br)
-    : (Rr.Promise.prototype.finally = Cr),
+    : (Rr.Promise.prototype.finally = vr),
     (function (t) {
       function e() {}
       function n(t, e) {
@@ -3972,7 +3972,7 @@
       }
       return e;
     },
-    vo = a(function (t, e) {
+    Co = a(function (t, e) {
       var n =
         (c && c.__assign) ||
         function () {
@@ -4053,9 +4053,9 @@
           a(t, '', n(n({}, e), { expires: -1 }));
         });
     });
-  s(vo);
-  vo.encode, vo.parse, vo.getAll, vo.get, vo.set, vo.remove;
-  var Co = {
+  s(Co);
+  Co.encode, Co.parse, Co.getAll, Co.get, Co.set, Co.remove;
+  var vo = {
       get: function (t) {
         if ('undefined' != typeof sessionStorage) {
           var e = sessionStorage.getItem(t);
@@ -4159,7 +4159,7 @@
           );
         var r,
           o,
-          c = t.useCookiesForTransactions ? this.cookieStorage : Co;
+          c = t.useCookiesForTransactions ? this.cookieStorage : vo;
         (this.cache = Ro(this.cacheLocation)()),
           (this.scope = this.options.scope),
           (this.transactionManager = new po(c)),
@@ -4789,10 +4789,8 @@
             (this.cache.clear(),
             this.cookieStorage.remove('auth0.is.authenticated'),
             !e)
-          ) {
-            var r = this.buildLogoutUrl(n);
-            window.location.assign(r);
-          }
+          )
+            return this.buildLogoutUrl(n);
         }),
         (t.prototype._getTokenFromIFrame = function (t) {
           return r(this, void 0, void 0, function () {

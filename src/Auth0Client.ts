@@ -820,7 +820,8 @@ export default class Auth0Client {
       return;
     }
     const url = this.buildLogoutUrl(logoutOptions);
-    window.location.assign(url);
+    //window.location.assign(url);
+    return url;
   }
 
   private async _getTokenFromIFrame(

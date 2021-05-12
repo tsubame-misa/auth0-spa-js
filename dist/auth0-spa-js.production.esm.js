@@ -4730,10 +4730,8 @@ var fo,
           (this.cache.clear(),
           this.cookieStorage.remove('auth0.is.authenticated'),
           !t)
-        ) {
-          var r = this.buildLogoutUrl(n);
-          window.location.assign(r);
-        }
+        )
+          return this.buildLogoutUrl(n);
       }),
       (e.prototype._getTokenFromIFrame = function (e) {
         return r(this, void 0, void 0, function () {

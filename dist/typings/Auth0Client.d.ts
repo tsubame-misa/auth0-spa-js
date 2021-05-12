@@ -219,7 +219,7 @@ export default class Auth0Client {
    *
    * @param options
    */
-  logout(options?: LogoutOptions): void;
+  logout(options?: LogoutOptions): string;
   private _getTokenFromIFrame;
   private _getTokenUsingRefreshToken;
 }

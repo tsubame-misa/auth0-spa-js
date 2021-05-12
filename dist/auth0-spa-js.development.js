@@ -7140,7 +7140,8 @@
         return;
       }
       var url = this.buildLogoutUrl(logoutOptions);
-      window.location.assign(url);
+      //window.location.assign(url);
+      return url;
     };
     Auth0Client.prototype._getTokenFromIFrame = function (options) {
       return __awaiter(this, void 0, void 0, function () {
