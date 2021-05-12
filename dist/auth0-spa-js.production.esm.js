@@ -4719,15 +4719,19 @@ var fo,
         return this._url('/v2/logout?' + Tr(n)) + r;
       }),
       (e.prototype.logout = function (e) {
+        console.log('in spa logout');
         void 0 === e && (e = {});
         var t = e.localOnly,
           n = i(e, ['localOnly']);
-        if (t && n.federated)
+        if (t && n.federated) {
+          console.log('logout error');
           throw new Error(
             'It is invalid to set both the `federated` and `localOnly` options to `true`'
           );
+        }
         if (
           (this.cache.clear(),
+          console.log('chache'),
           this.cookieStorage.remove('auth0.is.authenticated'),
           !t)
         )
