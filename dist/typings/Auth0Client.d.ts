@@ -206,15 +206,6 @@ export default class Auth0Client {
   buildLogoutUrl(options?: LogoutUrlOptions): string;
   /**
    * ```js
-   * await auth0.buildLogoutUrl(options);
-   * ```
-   *
-   * Builds a URL to the logout endpoint using the parameters provided as arguments.
-   * @param options
-   */
-  originBuildLogoutUrl(options?: LogoutOptions): void;
-  /**
-   * ```js
    * auth0.logout();
    * ```
    *

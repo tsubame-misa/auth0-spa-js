@@ -6170,42 +6170,6 @@ var Auth0Client = /** @class */ (function () {
   };
   /**
    * ```js
-   * await auth0.buildLogoutUrl(options);
-   * ```
-   *
-   * Builds a URL to the logout endpoint using the parameters provided as arguments.
-   * @param options
-   */
-  Auth0Client.prototype.originBuildLogoutUrl = function (options) {
-    if (options === void 0) {
-      options = {};
-    }
-    var localOnly = options.localOnly,
-      logoutOptions = __rest(options, ['localOnly']);
-    if (localOnly && logoutOptions.federated) {
-      throw new Error(
-        'It is invalid to set both the `federated` and `localOnly` options to `true`'
-      );
-    }
-    this.cache.clear();
-    this.cookieStorage.remove('auth0.is.authenticated');
-    if (localOnly) {
-      return;
-    }
-    /*if (options.client_id !== null) {
-          options.client_id = options.client_id || this.options.client_id;
-        } else {
-          delete options.client_id;
-        }
-    
-        const { federated } = options;
-        const federatedQuery = federated ? `&federated` : '';
-        const url = this._url(`/v2/logout?${createQueryParams(logoutOptions)}`);
-    
-        return url + federatedQuery;*/
-  };
-  /**
-   * ```js
    * auth0.logout();
    * ```
    *
@@ -6233,10 +6197,11 @@ var Auth0Client = /** @class */ (function () {
     this.cache.clear();
     this.cookieStorage.remove('auth0.is.authenticated');
     if (localOnly) {
+      console.log('Spa login localonly reuturn');
       return;
     }
-    var url = this.buildLogoutUrl(logoutOptions);
-    window.location.assign(url);
+    /*const url = this.buildLogoutUrl(logoutOptions);
+        window.location.assign(url);*/
   };
   Auth0Client.prototype._getTokenFromIFrame = function (options) {
     return __awaiter(this, void 0, void 0, function () {
