@@ -809,7 +809,7 @@ export default class Auth0Client {
    * @param options
    */
   public logout(options: LogoutOptions = {}) {
-    const { localOnly, ...logoutOptions } = options;
+    /*const { localOnly, ...logoutOptions } = options;
 
     if (localOnly && logoutOptions.federated) {
       throw new Error(

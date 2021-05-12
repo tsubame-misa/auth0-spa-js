@@ -7127,23 +7127,22 @@
      * @param options
      */
     Auth0Client.prototype.logout = function (options) {
-      if (options === void 0) {
-        options = {};
-      }
-      var localOnly = options.localOnly,
-        logoutOptions = __rest(options, ['localOnly']);
-      if (localOnly && logoutOptions.federated) {
-        throw new Error(
-          'It is invalid to set both the `federated` and `localOnly` options to `true`'
-        );
-      }
-      this.cache.clear();
-      this.cookieStorage.remove('auth0.is.authenticated');
-      if (localOnly) {
-        console.log('Spa login localonly reuturn');
-        return;
-      }
-      /*const url = this.buildLogoutUrl(logoutOptions);
+      /*const { localOnly, ...logoutOptions } = options;
+        
+            if (localOnly && logoutOptions.federated) {
+              throw new Error(
+                'It is invalid to set both the `federated` and `localOnly` options to `true`'
+              );
+            }
+        
+            this.cache.clear();
+            this.cookieStorage.remove('auth0.is.authenticated');
+        
+            if (localOnly) {
+              console.log('Spa login localonly reuturn');
+              return;
+            }
+            /*const url = this.buildLogoutUrl(logoutOptions);
             window.location.assign(url);*/
     };
     Auth0Client.prototype._getTokenFromIFrame = function (options) {
